@@ -1,0 +1,5 @@
+example commands:
+
+ansible-playbook playbook-cli_essential.yml -K --extra-vars 'remotehost=localhost remoteuser=tkiatd'
+ansible-playbook playbook-cli_essential.yml -K --extra-vars 'remotehost=178.128.218.134 remoteuser=tkiatd'
+ansible-playbook playbook-cli_essential.yml -K -u tkiatd -e 'remotehost=178.128.218.134'
