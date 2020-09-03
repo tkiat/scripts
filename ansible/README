@@ -1,5 +1,7 @@
-example commands:
+Test
+ansible all -i hosts.yml -m ping
 
-ansible-playbook playbook-cli_essential.yml -K --extra-vars 'remotehost=localhost remoteuser=tkiatd'
+Usage
+ansible-playbook -i hosts.yml playbook/main.yml --extra-vars "hosts=localhost" -K
+
 ansible-playbook playbook-cli_essential.yml -K --extra-vars 'remotehost=178.128.218.134 remoteuser=tkiatd'
-ansible-playbook playbook-cli_essential.yml -K -u tkiatd -e 'remotehost=178.128.218.134'

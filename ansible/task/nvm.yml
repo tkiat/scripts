@@ -1,0 +1,12 @@
+- name: "nvm installation part 1: git clone"
+  git:
+    repo: https://github.com/nvm-sh/nvm.git
+    dest: "{{ ansible_env.HOME }}/.nvm"
+
+- name: "nvm installation part 2: source nvm.sh and install node stable"
+  shell: |
+    . {{ ansible_env.HOME }}/.nvm/nvm.sh
+    nvm install node
+    nvm use node
+  args:
+    creates: "{{ ansible_env.HOME }}/.nvm/versions/node"

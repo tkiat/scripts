@@ -1,0 +1,20 @@
+- name: git clone tkiatd/dotfiles
+  git:
+    repo: https://github.com/tkiatd/dotfiles.git
+    dest: "{{ ansible_env.HOME }}/Git/dotfiles"
+
+- name: make symlinks to dotfiles
+  vars:
+    dotfiles_location: "{{ ansible_env.HOME }}/Git/dotfiles"
+  file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+  loop:
+    - { src: "{{ dotfiles_location }}/.zshrc.aliases", dest: "{{ ansible_env.HOME }}/.zshrc.aliases"}
+    - { src: "{{ dotfiles_location }}/.tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf"}
+    - { src: "{{ dotfiles_location }}/.zshrc", dest: "{{ ansible_env.HOME }}/.zshrc"}
+    - { src: "{{ dotfiles_location }}/.vimrc", dest: "{{ ansible_env.HOME }}/.vimrc"}
+    - { src: "{{ dotfiles_location }}/.vim/colors", dest: "{{ ansible_env.HOME }}/.vim/colors"}
+    - { src: "{{ dotfiles_location }}/.vim/template", dest: "{{ ansible_env.HOME }}/.vim/template"}
+  when: dotfiles_location is defined

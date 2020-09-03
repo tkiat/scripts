@@ -1,8 +1,3 @@
-# ansible-playbook playbook-install.yml -K --limit localhost
-#   - name: nvm (ensure .nvm folder exists)
-#     file: "path={{ ansible_env.HOME }}/.nvm state=directory"
-
-# ansible-playbook playbook-install.yml -K --limit localhost$
 #   - name: nvm (ensure .nvm folder exists)$
 #     file: "path={{ ansible_env.HOME }}/.nvm state=directory"$
 #- hosts: localhost$

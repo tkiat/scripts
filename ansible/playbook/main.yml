@@ -1,0 +1,19 @@
+---
+- hosts: "{{ hosts }}"
+  tasks:
+
+    #- name: latest installation using package manager
+    #  become: true
+    #    #ignore_errors: yes
+    #  package:
+    #    name: "{{ item }}"
+    #    state: latest
+    #  with_items:
+    #    - curl
+    #    - git
+    #    - vim
+    #    - wget
+    #    - zsh
+
+  - import_tasks: ../task/dotfiles.yml
+    #- import_tasks: ../task/nvm.yml
