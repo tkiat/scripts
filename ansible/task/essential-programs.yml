@@ -1,0 +1,11 @@
+- name: essential programs installation
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - curl
+    - git
+    - vim
+    - wget
+    - zsh

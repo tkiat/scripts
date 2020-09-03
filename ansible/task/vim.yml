@@ -1,5 +1,44 @@
-- name: "vim: VimCompletesMe"
+- block:
+  - name: vim-pathogen -> create folders if not exist
+    file:
+      path: "{{ item }}"
+      state: directory
+    loop:
+      - ~/.vim/bundle
+      - ~/.vim/autoload
+  - name: vim-pathogen -> download source
+    get_url:
+      url: https://tpo.pe/pathogen.vim
+      dest: ~/.vim/autoload/pathogen.vim
+
+- name: emmet-vim
+  git:
+    repo: https://github.com/mattn/emmet-vim.git
+    dest: ~/.vim/bundle/emmet-vim
+
+- name: VimCompletesMe
   git:
     repo: git://github.com/ajh17/VimCompletesMe.git
     dest: ~/.vim/pack/vendor/start/VimCompletesMe
 
+- block:
+  - name: NERDTree -> git clone
+    git:
+      repo: https://github.com/preservim/nerdtree.git
+      dest: ~/.vim/pack/vendor/start/nerdtree
+  - name: NERDTree -> initiate
+    shell: vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+    changed_when: false
+
+- block:
+  - name: vim-go -> git clone
+    git:
+      repo: https://github.com/fatih/vim-go.git
+      dest: ~/.vim/pack/plugins/start/vim-go
+  - name: vim-go -> initiate
+    shell: vim -E -s -c "GoInstallBinaries" -c qa
+    changed_when: false
+
+- name: source ~/.vimrc
+  shell: vim -c "source ~/.vimrc" -c qa
+  changed_when: false
