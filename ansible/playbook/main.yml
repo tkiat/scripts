@@ -1,7 +1,16 @@
 ---
 - hosts: "{{ hosts }}"
+  vars:
+    taskfiles_dir: "../task"
   tasks:
-    - import_tasks: ../task/essential-programs.yml
-    - import_tasks: ../task/dotfiles.yml
-    - import_tasks: ../task/vim.yml
-    - import_tasks: ../task/nodejs.yml
+    - block:
+      - import_tasks: "{{ taskfiles_dir }}/essential-programs.yml"
+      - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/nodejs.yml"
+      tags:
+        all
+    - block:
+      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
+      tags:
+        vim

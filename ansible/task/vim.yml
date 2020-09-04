@@ -11,15 +11,50 @@
       url: https://tpo.pe/pathogen.vim
       dest: ~/.vim/autoload/pathogen.vim
 
+- block:
+  - name: coc.nvim -> ensure folder exists for upcoming archive
+    file:
+      path: ~/.vim/pack/coc/start
+      state: directory
+  - name: coc.nvim -> check if archive file exist
+    stat:
+      path: ~/.vim/pack/coc/start/coc-nvim-archive
+    register: coc_nvim_archive
+  - block:
+    - name: coc.nvim -> download archive to this folder
+      get_url:
+        url: https://github.com/neoclide/coc.nvim/archive/release.tar.gz
+        dest: ~/.vim/pack/coc/start/coc-nvim-archive
+    - name: coc.nvim -> extract archive
+      unarchive:
+        src: ~/.vim/pack/coc/start/coc-nvim-archive
+        dest: ~/.vim/pack/coc/start/
+    when: coc_nvim_archive.stat.exists == false
+  - name: coc.nvim -> check if package.json exist
+    stat:
+      path: ~/.config/coc/extensions/package.json
+    register: package_json
+  - name: coc.nvim -> create package.json if not exist
+    copy:
+      dest: ~/.config/coc/extensions/package.json
+      content: '{"dependencies":{}}'
+    when: package_json.stat.exists == false
+  - name: coc.nvim -> install extensions
+    npm:
+      name: "{{ item }}"
+      path: ~/.config/coc/extensions
+    with_items:
+      - coc-css
+      - coc-html
+      - coc-json
+      - coc-python
+      - coc-tsserver
+      - coc-yaml
+
 - name: emmet-vim
   git:
     repo: https://github.com/mattn/emmet-vim.git
     dest: ~/.vim/bundle/emmet-vim
-
-- name: VimCompletesMe
-  git:
-    repo: git://github.com/ajh17/VimCompletesMe.git
-    dest: ~/.vim/pack/vendor/start/VimCompletesMe
 
 - block:
   - name: NERDTree -> git clone
@@ -36,7 +71,7 @@
       repo: https://github.com/fatih/vim-go.git
       dest: ~/.vim/pack/plugins/start/vim-go
   - name: vim-go -> initiate
-    shell: vim -E -s -c "GoInstallBinaries" -c qa
+    shell: vim -esN +GoInstallBinaries +q
     changed_when: false
 
 - name: source ~/.vimrc

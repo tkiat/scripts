@@ -4,10 +4,13 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-- name: nodejs -> source nvm then install node from it
-  shell: |
-    . {{ ansible_env.HOME }}/.nvm/nvm.sh
-    nvm install node
-    nvm use node
+- name: nodejs -> install node lts from nvm
+  shell: . {{ ansible_env.HOME }}/.zshrc && nvm install --lts
   args:
-    creates: "{{ ansible_env.HOME }}/.nvm/versions/node"
+    executable: /bin/zsh
+  register: result
+  changed_when: not result.stderr is search("already installed")
+
+- name: nodejs -> source nvm
+  shell: . {{ ansible_env.HOME }}/.nvm/nvm.sh
+  changed_when: false
