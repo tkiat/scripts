@@ -74,6 +74,11 @@
     shell: vim -esN +GoInstallBinaries +q
     changed_when: false
 
+- name: "vim: VimCompletesMe"
+  git:
+    repo: git://github.com/ajh17/VimCompletesMe.git
+    dest: ~/.vim/pack/vendor/start/VimCompletesMe
+
 - name: source ~/.vimrc
   shell: vim -c "source ~/.vimrc" -c qa
   changed_when: false

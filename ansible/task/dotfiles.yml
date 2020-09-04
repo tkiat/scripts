@@ -8,6 +8,8 @@
     dest: "{{ ansible_env.HOME }}/Git/dotfiles"
   when: dotfiles_dir.stat.exists == false
 
+    # git remote set-url origin git@github.com:tkiatd/dotfiles.git
+    # do this first then if fail use this condition to clone https
 - name: make symlinks to dotfiles
   vars:
     dotfiles_location: "{{ ansible_env.HOME }}/Git/dotfiles"
