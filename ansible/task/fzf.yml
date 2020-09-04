@@ -1,0 +1,20 @@
+- name: fzf -> install
+  package:
+    name: fzf
+    state: latest
+
+- name: fzf -> check config in ~/.zshrc.program
+  shell: "cat ~/.zshrc.program | grep '# BEGIN fzf' | wc -l"
+  register: fsf_present
+  changed_when: false
+
+- name: fzf -> append config to ~/.zshrc.program if not exist
+  blockinfile:
+    path: ~/.zshrc.program
+    marker: "# {mark}"
+    marker_begin: "BEGIN fzf"
+    marker_end: "END"
+    block: |
+      export FZF_DEFAULT_COMMAND="ag --depth 4 --hidden --ignore .git -f -g \"\""
+      export FZF_DEFAULT_OPTS=""
+  when: fsf_present.stdout == "0"

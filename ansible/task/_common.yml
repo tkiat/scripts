@@ -6,6 +6,7 @@
   with_items:
     - curl
     - git
+    - the_silver_searcher
     - vim
     - wget
     - zsh

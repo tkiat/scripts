@@ -4,13 +4,14 @@
     taskfiles_dir: "../task"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/essential-programs.yml"
+      - import_tasks: "{{ taskfiles_dir }}/_common.yml"
       - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
+      - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
       - import_tasks: "{{ taskfiles_dir }}/vim.yml"
       - import_tasks: "{{ taskfiles_dir }}/nodejs.yml"
       tags:
         all
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
       tags:
-        vim
+        temp
