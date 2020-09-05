@@ -1,0 +1,27 @@
+- name: vim-go -> git clone
+  git:
+    repo: https://github.com/fatih/vim-go.git
+    dest: ~/.vim/pack/plugins/start/vim-go
+
+- name: vim-go -> initiate
+  shell: vim -esN +GoInstallBinaries +q
+  changed_when: false
+
+- name: vim-go -> define config marker
+  set_fact:
+    marker_vim_go: "plugin: vim-go"
+
+- name: vim-go -> check if config exists in ~/.vimrc
+  shell: "cat ~/.vimrc | grep '{{ marker_vim_go }}' | wc -l"
+  register: vim_go_config
+  changed_when: false
+
+- name: vim-go -> ensure config exists in ~/.vimrc
+  blockinfile:
+    path: ~/.vimrc
+    marker: "\" {mark}"
+    marker_begin: "BEGIN {{ marker_vim_go}}"
+    marker_end: "END"
+    block: |
+      nnoremap <leader>gi :GoImport <C-R><C-W><cr>
+  when: vim_go_config.stdout == "0"

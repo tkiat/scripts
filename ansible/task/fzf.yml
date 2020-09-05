@@ -3,18 +3,22 @@
     name: fzf
     state: latest
 
-- name: fzf -> check if config exists in ~/.zshrc.program
-  shell: "cat ~/.zshrc.program | grep '# BEGIN fzf' | wc -l"
-  register: config_present
+- name: fzf -> define config marker
+  set_fact:
+    marker_fzf: "fzf ===================================="
+
+- name: fzf -> check if config exists in ~/.zshrc
+  shell: "cat ~/.zshrc | grep '{{ marker_fzf }}' | wc -l"
+  register: fzf_config
   changed_when: false
 
-- name: fzf -> append config to ~/.zshrc.program if not exist
+- name: fzf -> ensure config exists in ~/.zshrc
   blockinfile:
-    path: ~/.zshrc.program
+    path: ~/.zshrc
     marker: "# {mark}"
-    marker_begin: "BEGIN fzf"
-    marker_end: "END"
+    marker_begin: "{{ marker_fzf }}"
+    marker_end: "{{ marker_section_end }}"
     block: |
       export FZF_DEFAULT_COMMAND="ag --depth 4 --hidden --ignore .git -f -g \"\""
       export FZF_DEFAULT_OPTS="--layout=reverse"
-  when: config_present.stdout == "0"
+  when: fzf_config.stdout == "0"

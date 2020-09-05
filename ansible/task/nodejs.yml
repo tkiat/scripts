@@ -1,8 +1,28 @@
-- name: nodejs -> install nvm
+- name: nvm -> install
   shell: >
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+
+- name: nvm -> define config marker
+  set_fact:
+    marker_nvm: "nvm ===================================="
+
+- name: nvm -> check if config exists in ~/.zshrc
+  shell: "cat ~/.zshrc | grep '{{ marker_nvm }}' | wc -l"
+  register: nvm_config
+  changed_when: false
+
+- name: nvm -> ensure config exists in ~/.zshrc
+  blockinfile:
+    path: ~/.zshrc
+    marker: "# {mark}"
+    marker_begin: "{{ marker_nvm }}"
+    marker_end: "{{ marker_section_end }}"
+    block: |
+      export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+      [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  when: nvm_config.stdout == "0"
 
 - name: nodejs -> install node lts from nvm
   shell: . {{ ansible_env.HOME }}/.zshrc && nvm install --lts
@@ -14,3 +34,4 @@
 - name: nodejs -> source nvm
   shell: . {{ ansible_env.HOME }}/.nvm/nvm.sh
   changed_when: false
+

@@ -1,0 +1,4 @@
+- name: VimCompletesMe -> git clone
+  git:
+    repo: git://github.com/ajh17/VimCompletesMe.git
+    dest: ~/.vim/pack/vendor/start/VimCompletesMe

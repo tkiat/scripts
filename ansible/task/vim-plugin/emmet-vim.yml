@@ -1,0 +1,4 @@
+- name: emmet-vim -> git clone
+  git:
+    repo: https://github.com/mattn/emmet-vim.git
+    dest: ~/.vim/bundle/emmet-vim

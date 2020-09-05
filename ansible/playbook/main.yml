@@ -2,17 +2,30 @@
 - hosts: "{{ hosts }}"
   vars:
     taskfiles_dir: "../task"
+    marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/_common.yml"
-      - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
-      - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
-      - import_tasks: "{{ taskfiles_dir }}/nodejs.yml"
-      - import_tasks: "{{ taskfiles_dir }}/scripts.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/common-programs.yml"
       tags:
-        all
+        common
     - block:
       - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
+      - import_tasks: "{{ taskfiles_dir }}/scripts.yml"
       tags:
-        temp
+        my_repo
+    - block:
+      - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
+      - import_tasks: "{{ taskfiles_dir }}/nodejs.yml"
+      tags:
+        programs
+    - block:
+      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-pkg-manager/vim-pathogen.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/coc_nvim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/emmet-vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/NERDTree.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/VimCompletesMe.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/vim-go.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim-plugin/vim-terraform.yml"
+      tags:
+        vim

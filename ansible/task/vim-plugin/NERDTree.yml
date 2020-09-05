@@ -1,0 +1,31 @@
+- name: NERDTree -> git clone
+  git:
+    repo: https://github.com/preservim/nerdtree.git
+    dest: ~/.vim/pack/vendor/start/nerdtree
+
+- name: NERDTree -> initiate
+  shell: vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+  changed_when: false
+
+- name: NERDTree -> define config marker
+  set_fact:
+    marker_nerdtree: "plugin: NERDTree"
+
+- name: NERDTree -> check if config exists in ~/.vimrc
+  shell: "cat ~/.vimrc | grep '{{ marker_nerdtree }}' | wc -l"
+  register: nerdtree_config
+  changed_when: false
+
+- name: NERDTree -> ensure config exists in ~/.vimrc
+  blockinfile:
+    path: ~/.vimrc
+    marker: "\" {mark}"
+    marker_begin: "BEGIN {{ marker_nerdtree }}"
+    marker_end: "END"
+    block: |
+      filetype plugin indent on
+      let NERDTreeShowHidden=1
+      let NERDTreeShowLineNumbers=1
+      autocmd StdinReadPre * let s:std_in=1
+      autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+  when: nerdtree_config.stdout == "0"

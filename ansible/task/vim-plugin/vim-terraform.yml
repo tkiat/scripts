@@ -1,0 +1,23 @@
+- name: vim-terraform -> git clone
+  git:
+    repo: https://github.com/hashivim/vim-terraform.git
+    dest: ~/.vim/pack/plugins/start/vim-terraform
+
+- name: vim-terraform -> define config marker
+  set_fact:
+    marker_vim_terraform: "plugin: vim-terraform"
+
+- name: vim-terraform -> check if config exists in ~/.vimrc
+  shell: "cat ~/.vimrc | grep '{{ marker_vim_terraform }}' | wc -l"
+  register: vim_terraform_config
+  changed_when: false
+
+- name: vim-terraform -> ensure config exists in ~/.vimrc
+  blockinfile:
+    path: ~/.vimrc
+    marker: "\" {mark}"
+    marker_begin: "BEGIN {{ marker_vim_terraform}}"
+    marker_end: "END"
+    block: |
+      let g:terraform_fmt_on_save=1
+  when: vim_terraform_config.stdout == "0"

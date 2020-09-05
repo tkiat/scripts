@@ -7,6 +7,6 @@
     - curl
     - git
     - the_silver_searcher
-    - vim
+    - tmux
     - wget
     - zsh
