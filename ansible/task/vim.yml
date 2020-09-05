@@ -30,15 +30,21 @@
         src: ~/.vim/pack/coc/start/coc-nvim-archive
         dest: ~/.vim/pack/coc/start/
     when: coc_nvim_archive.stat.exists == false
-  - name: coc.nvim -> check if package.json exist
+
+  - name: coc.nvim -> create ~/.config/coc/extensions/ if not exist
+    file:
+      path: ~/.config/coc/extensions
+      state: directory
+  - name: coc.nvim -> check if ~/.config/coc/extensions/package.json exist
     stat:
       path: ~/.config/coc/extensions/package.json
     register: package_json
-  - name: coc.nvim -> create package.json if not exist
+  - name: coc.nvim -> copy content to package.json
     copy:
       dest: ~/.config/coc/extensions/package.json
       content: '{"dependencies":{}}'
     when: package_json.stat.exists == false
+
   - name: coc.nvim -> install extensions
     npm:
       name: "{{ item }}"

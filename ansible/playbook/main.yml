@@ -7,11 +7,12 @@
       - import_tasks: "{{ taskfiles_dir }}/_common.yml"
       - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
       - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
       - import_tasks: "{{ taskfiles_dir }}/nodejs.yml"
+      - import_tasks: "{{ taskfiles_dir }}/scripts.yml"
+      - import_tasks: "{{ taskfiles_dir }}/vim.yml"
       tags:
         all
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/fzf.yml"
+      - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
       tags:
         temp

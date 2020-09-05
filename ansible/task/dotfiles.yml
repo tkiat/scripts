@@ -2,14 +2,20 @@
     path: "{{ ansible_env.HOME }}/Git/dotfiles"
   register: dotfiles_dir
 
-- name: git clone tkiatd/dotfiles if not exist
+- name: git clone tkiatd/dotfiles (ssh)
+  git:
+    repo: git@github.com:tkiatd/dotfiles.git
+    dest: "{{ ansible_env.HOME }}/Git/dotfiles"
+  ignore_errors: yes
+  register: git_ssh_clone_result
+  when: dotfiles_dir.stat.exists == false
+
+- name: git clone tkiatd/dotfiles (http, fallback)
   git:
     repo: https://github.com/tkiatd/dotfiles.git
     dest: "{{ ansible_env.HOME }}/Git/dotfiles"
-  when: dotfiles_dir.stat.exists == false
+  when: dotfiles_dir.stat.exists == false and git_ssh_clone_result.failed == true
 
-    # git remote set-url origin git@github.com:tkiatd/dotfiles.git
-    # do this first then if fail use this condition to clone https
 - name: make symlinks to dotfiles
   vars:
     dotfiles_location: "{{ ansible_env.HOME }}/Git/dotfiles"
@@ -25,5 +31,9 @@
     - { src: "{{ dotfiles_location }}/.vim/template", dest: "{{ ansible_env.HOME }}/.vim/template"}
     - { src: "{{ dotfiles_location }}/.zshrc", dest: "{{ ansible_env.HOME }}/.zshrc"}
     - { src: "{{ dotfiles_location }}/.zshrc.aliases", dest: "{{ ansible_env.HOME }}/.zshrc.aliases"}
-    - { src: "{{ dotfiles_location }}/.zshrc.program", dest: "{{ ansible_env.HOME }}/.zshrc.program"}
   when: dotfiles_location is defined
+
+- name: dotfiles -> create ~/.zshrc.program if not exist
+  file:
+    path: ~/.zshrc.program
+    state: file

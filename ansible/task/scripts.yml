@@ -1,0 +1,39 @@
+- stat:
+    path: "{{ ansible_env.HOME }}/Git/scripts"
+  register: scripts_dir
+
+- name: scripts -> git clone tkiatd/scripts (ssh)
+  git:
+    repo: git@github.com:tkiatd/scripts.git
+    dest: "{{ ansible_env.HOME }}/Git/scripts"
+  ignore_errors: yes
+  register: git_ssh_clone_result
+  when: scripts_dir.stat.exists == false
+
+- name: scripts -> git clone tkiatd/scripts (http, fallback)
+  git:
+    repo: https://github.com/tkiatd/scripts.git
+    dest: "{{ ansible_env.HOME }}/Git/scripts"
+  when: scripts_dir.stat.exists == false and git_ssh_clone_result.failed == true
+
+- name: scripts -> check if config exist in ~/.zshrc.program
+  shell: "cat ~/.zshrc.program | grep '# BEGIN scripts' | wc -l"
+  register: config_present
+  changed_when: false
+
+- name: scripts -> append config to ~/.zshrc.program if not exist
+  blockinfile:
+    path: ~/.zshrc.program
+    marker: "# {mark}"
+    marker_begin: "BEGIN scripts"
+    marker_end: "END"
+    block: |
+      local git_dir=~/Git
+      if [ -d $git_dir/scripts/ ]; then
+        for dir in $git_dir/scripts/*; do
+          if [[ $(basename $dir) == bash || $(basename $dir) == python ]]; then
+            export PATH=$PATH:$dir
+          fi
+        done
+      fi
+  when: config_present.stdout == "0"

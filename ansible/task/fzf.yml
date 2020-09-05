@@ -3,9 +3,9 @@
     name: fzf
     state: latest
 
-- name: fzf -> check config in ~/.zshrc.program
+- name: fzf -> check if config exists in ~/.zshrc.program
   shell: "cat ~/.zshrc.program | grep '# BEGIN fzf' | wc -l"
-  register: fsf_present
+  register: config_present
   changed_when: false
 
 - name: fzf -> append config to ~/.zshrc.program if not exist
@@ -16,5 +16,5 @@
     marker_end: "END"
     block: |
       export FZF_DEFAULT_COMMAND="ag --depth 4 --hidden --ignore .git -f -g \"\""
-      export FZF_DEFAULT_OPTS=""
-  when: fsf_present.stdout == "0"
+      export FZF_DEFAULT_OPTS="--layout=reverse"
+  when: config_present.stdout == "0"
