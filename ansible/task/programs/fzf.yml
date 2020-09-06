@@ -7,14 +7,14 @@
   set_fact:
     marker_fzf: "fzf ===================================="
 
-- name: fzf -> check if config exists in ~/.zshrc
-  shell: "cat ~/.zshrc | grep '{{ marker_fzf }}' | wc -l"
+- name: fzf -> check if config exists in ~/.zprofile
+  shell: "cat ~/.zprofile | grep '{{ marker_fzf }}' | wc -l"
   register: fzf_config
   changed_when: false
 
-- name: fzf -> ensure config exists in ~/.zshrc
+- name: fzf -> ensure config exists in ~/.zprofile
   blockinfile:
-    path: ~/.zshrc
+    path: ~/.zprofile
     marker: "# {mark}"
     marker_begin: "{{ marker_fzf }}"
     marker_end: "{{ marker_section_end }}"

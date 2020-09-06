@@ -1,4 +1,5 @@
-- stat:
+- name: scripts -> check if ~/Git/dotfiles exist
+  stat:
     path: "{{ ansible_env.HOME }}/Git/dotfiles"
   register: dotfiles_dir
 
@@ -29,11 +30,7 @@
     - { src: "{{ dotfiles_location }}/.vimrc", dest: "{{ ansible_env.HOME }}/.vimrc"}
     - { src: "{{ dotfiles_location }}/.vim/colors", dest: "{{ ansible_env.HOME }}/.vim/colors"}
     - { src: "{{ dotfiles_location }}/.vim/template", dest: "{{ ansible_env.HOME }}/.vim/template"}
+    - { src: "{{ dotfiles_location }}/.zprofile", dest: "{{ ansible_env.HOME }}/.zprofile"}
+    - { src: "{{ dotfiles_location }}/.zshenv", dest: "{{ ansible_env.HOME }}/.zshenv"}
     - { src: "{{ dotfiles_location }}/.zshrc", dest: "{{ ansible_env.HOME }}/.zshrc"}
-    - { src: "{{ dotfiles_location }}/.zshrc.aliases", dest: "{{ ansible_env.HOME }}/.zshrc.aliases"}
   when: dotfiles_location is defined
-
-- name: dotfiles -> create ~/.zshrc.program if not exist
-  file:
-    path: ~/.zshrc.program
-    state: file

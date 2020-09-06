@@ -3,6 +3,25 @@
     name: vim
     state: latest
 
+- name: vim -> define config marker
+  set_fact:
+    marker_vim: "vim ===================================="
+
+- name: vim -> check if config exists in ~/.zprofile
+  shell: "cat ~/.zprofile | grep '{{ marker_vim }}' | wc -l"
+  register: vim_config
+  changed_when: false
+
+- name: vim -> ensure config exists in ~/.zprofile
+  blockinfile:
+    path: ~/.zprofile
+    marker: "# {mark}"
+    marker_begin: "{{ marker_vim }}"
+    marker_end: "{{ marker_section_end }}"
+    block: |
+      export EDITOR=vim
+  when: vim_config.stdout == "0"
+
 - name: vim directories -> create backup, swap, undo folders inside ~/.vim
   file:
     path: "{{ item }}"
