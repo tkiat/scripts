@@ -7,18 +7,20 @@
   set_fact:
     marker_fzf: "fzf ===================================="
 
-- name: fzf -> check if config exists in ~/.zprofile
-  shell: "cat ~/.zprofile | grep '{{ marker_fzf }}' | wc -l"
-  register: fzf_config
-  changed_when: false
+- block: # add config to .zshenv
+  - name: fzf -> check if config exists in ~/.zshenv
+    shell: "cat ~/.zshenv | grep '{{ marker_fzf }}' | wc -l"
+    register: fzf_config_zshenv
+    changed_when: false
 
-- name: fzf -> ensure config exists in ~/.zprofile
-  blockinfile:
-    path: ~/.zprofile
-    marker: "# {mark}"
-    marker_begin: "{{ marker_fzf }}"
-    marker_end: "{{ marker_section_end }}"
-    block: |
-      export FZF_DEFAULT_COMMAND="ag --depth 4 --hidden --ignore .git -f -g \"\""
-      export FZF_DEFAULT_OPTS="--layout=reverse"
-  when: fzf_config.stdout == "0"
+  - name: fzf -> ensure config exists in ~/.zshenv
+    blockinfile:
+      path: ~/.zshenv
+      marker: "# {mark}"
+      marker_begin: "{{ marker_fzf }}"
+      marker_end: "{{ marker_section_end }}"
+      block: |
+        source /usr/share/doc/fzf/completion.zsh # e.g. cd **<tab>
+        export FZF_DEFAULT_COMMAND="ag --depth 4 --hidden --ignore .git -f -g \"\""
+        export FZF_DEFAULT_OPTS="--layout=reverse --exact"
+    when: fzf_config_zshenv.stdout == "0"

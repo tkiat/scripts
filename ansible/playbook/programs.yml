@@ -5,7 +5,8 @@
     marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs/ruby.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/nodejs.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/fzf.yml"
       tags:
         temp
     - block:

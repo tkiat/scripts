@@ -8,14 +8,14 @@
   set_fact:
     marker_nvm: "nvm ===================================="
 
-- name: nvm -> check if config exists in ~/.zprofile
-  shell: "cat ~/.zprofile | grep '{{ marker_nvm }}' | wc -l"
+- name: nvm -> check if config exists in ~/.zshenv
+  shell: "cat ~/.zshenv | grep '{{ marker_nvm }}' | wc -l"
   register: nvm_config
   changed_when: false
 
-- name: nvm -> ensure config exists in ~/.zprofile
+- name: nvm -> ensure config exists in ~/.zshenv
   blockinfile:
-    path: ~/.zprofile
+    path: ~/.zshenv
     marker: "# {mark}"
     marker_begin: "{{ marker_nvm }}"
     marker_end: "{{ marker_section_end }}"
@@ -25,7 +25,7 @@
   when: nvm_config.stdout == "0"
 
 - name: nodejs -> install node lts from nvm
-  shell: . {{ ansible_env.HOME }}/.zprofile && nvm install --lts
+  shell: . {{ ansible_env.HOME }}/.zshenv && nvm install --lts
   args:
     executable: /bin/zsh
   register: result
