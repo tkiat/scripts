@@ -2,29 +2,24 @@
   package:
     name: ruby
     state: latest
-# if which ruby >/dev/null && which gem >/dev/null; then
-#     PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
-# fi
 
+- name: ruby -> define config marker
+  set_fact:
+    marker_ruby: "ruby ==================================="
 
-# - name: go -> define config marker
-#   set_fact:
-#     marker_go: "go ====================================="
-#
-# - name: go -> check if config exists in ~/.zshenv
-#   shell: "cat ~/.zshenv | grep '{{ marker_go }}' | wc -l"
-#   register: go_config
-#   changed_when: false
-#
-# - name: go -> ensure config exists in ~/.zshenv
-#   blockinfile:
-#     path: ~/.zshenv
-#     marker: "# {mark}"
-#     marker_begin: "{{ marker_go }}"
-#     marker_end: "{{ marker_section_end }}"
-#     block: |
-#       export GOPATH=$HOME/go
-#       export GOBIN=$GOPATH/bin
-#       export PATH=$PATH:$GOBIN
-#   when: go_config.stdout == "0"
-#
+- name: ruby -> check if config exists in ~/.zshenv
+  shell: "cat ~/.zshenv | grep '{{ marker_ruby }}' | wc -l"
+  register: ruby_config
+  changed_when: false
+
+- name: ruby -> ensure config exists in ~/.zshenv
+  blockinfile:
+    path: ~/.zshenv
+    marker: "# {mark}"
+    marker_begin: "{{ marker_ruby }}"
+    marker_end: "{{ marker_section_end }}"
+    block: |
+      if which ruby >/dev/null && which gem >/dev/null; then
+          PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
+      fi
+  when: ruby_config.stdout == "0"

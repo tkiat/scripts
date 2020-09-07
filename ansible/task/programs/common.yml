@@ -1,4 +1,4 @@
-- name: essential programs installation
+- name: common programs installation (pkg manager)
   become: true
   package:
     name: "{{ item }}"
@@ -10,3 +10,8 @@
     - tmux
     - wget
     - zsh
+
+- name: common programs installation (ruby gem)
+  gem:
+    name: asciidoctor
+    state: latest
