@@ -5,8 +5,7 @@
     marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      # - import_tasks: "{{ taskfiles_dir }}/programs/common.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/ruby.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/group.yml"
       tags:
         temp
     - block:
@@ -15,7 +14,7 @@
       tags:
         my_repo
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs/common.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/group.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/fzf.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/go.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/nodejs.yml"
@@ -24,13 +23,13 @@
       tags:
         programs
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-pkg-manager/vim-pathogen.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/coc_nvim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/emmet-vim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/NERDTree.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/VimCompletesMe.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/vim-go.yml"
-      - import_tasks: "{{ taskfiles_dir }}/vim/vim-plugin/vim-terraform.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-pkg-manager/vim-pathogen.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/coc_nvim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/emmet-vim.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/NERDTree.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/VimCompletesMe.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/vim-go.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/vim-terraform.yml"
       tags:
         vim

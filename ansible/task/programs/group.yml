@@ -6,12 +6,14 @@
   with_items:
     - curl
     - git
+    - ImageMagick
     - the_silver_searcher
     - tmux
     - wget
     - zsh
 
 - name: common programs installation (ruby gem)
+  become: true
   gem:
     name: asciidoctor
     state: latest
