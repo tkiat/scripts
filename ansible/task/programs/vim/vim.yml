@@ -1,6 +1,13 @@
 - name: vim -> install
+  become: true
   package:
     name: vim
+    state: latest
+
+- name: gvim -> install
+  become: true
+  package:
+    name: gvim
     state: latest
 
 - name: vim -> define config marker

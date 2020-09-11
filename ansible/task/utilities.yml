@@ -1,0 +1,22 @@
+- name: install utilities (via pkg manager)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - curl
+    - git
+    - python
+    - redshift
+    - the_silver_searcher
+    - tmux
+    - tree
+    - yarn
+    - wget
+    - zsh
+
+# - name: common programs installation (ruby gem)
+#   become: true
+#   gem:
+#     name: asciidoctor
+#     state: latest

@@ -1,0 +1,18 @@
+- name: display -> check if {{ item.dir }} exists
+  stat:
+    path: "{{ item.dir }}"
+  register: item_dir
+
+- name: display -> git clone (ssh)
+  git:
+    repo: "{{ item.ssh }}"
+    dest: "{{ item.dir }}"
+  ignore_errors: yes
+  register: git_clone_result
+  when: item_dir.stat.exists == false
+
+- name: display -> git clone (http, fallback)
+  git:
+    repo: "{{ item.http }}"
+    dest: "{{ item.dir }}"
+  when: item_dir.stat.exists == false and git_clone_result.failed == true

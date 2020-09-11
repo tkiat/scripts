@@ -1,4 +1,5 @@
 - name: fzf -> install
+  become: true
   package:
     name: fzf
     state: latest

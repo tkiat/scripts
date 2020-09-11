@@ -1,8 +1,0 @@
-# - name: vs code (OSS) -> git clone
-#   git:
-#     repo: https://github.com/microsoft/vscode.git
-#     dest: ~/Git-PullOnly/vs_code_oss
-# 
-# - name: vs code (OSS) -> install packages based on package.json
-#   yarn:
-#     path: ~/Git-PullOnly/vs_code_oss/build

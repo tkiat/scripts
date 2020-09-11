@@ -1,4 +1,5 @@
 - name: ruby -> install
+  become: true
   package:
     name: ruby
     state: latest

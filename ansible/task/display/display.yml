@@ -1,0 +1,23 @@
+# - name: display -> install xorg
+#   become: true
+#   package:
+#     name: xorg
+#     state: latest
+
+- name: display -> ensure "{{ ansible_env.HOME }}/Git-Forked" exists 
+  file:
+    path: "{{ ansible_env.HOME }}/Git-Forked"
+    state: directory
+
+- name: display -> git clone related repos
+  include_tasks: "{{ taskfiles_dir }}/../task-reusable/git-clone.yml"
+  with_items:
+    - { dir: "{{ ansible_env.HOME }}/Git-Forked/forked-dwm",
+        http: "https://gitlab.com/tkiatd/forked-dwm.git",
+        ssh: "git@gitlab.com:tkiatd/forked-dwm.git" }
+    - { dir: "{{ ansible_env.HOME }}/Git-Forked/forked-st",
+        http: "https://gitlab.com/tkiatd/forked-st.git",
+        ssh: "git@gitlab.com:tkiatd/forked-st.git" }
+    - { dir: "{{ ansible_env.HOME }}/Git-Forked/forked-dmenu",
+        http: "https://gitlab.com/tkiatd/forked-dmenu.git",
+        ssh: "git@gitlab.com:tkiatd/forked-dmenu.git" }

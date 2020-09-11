@@ -1,0 +1,15 @@
+- name: common programs installation (pkg manager)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - ImageMagick
+    - vlc
+    - xpdf
+
+# - name: common programs installation (ruby gem)
+#   become: true
+#   gem:
+#     name: asciidoctor
+#     state: latest

@@ -1,4 +1,5 @@
 - name: go -> install
+  become: true
   package:
     name: go
     state: latest
