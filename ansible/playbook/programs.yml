@@ -5,7 +5,7 @@
     marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs/group.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vscodium.yml"
       tags:
         temp
     - block:
@@ -14,12 +14,14 @@
       tags:
         my_repo
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs/group.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs-common.yml"
+
       - import_tasks: "{{ taskfiles_dir }}/programs/fzf.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/go.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/nodejs.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/ruby.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/serverless.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/vscode-oss.yml"
       tags:
         programs
     - block:

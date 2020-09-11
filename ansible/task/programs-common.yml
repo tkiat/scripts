@@ -9,6 +9,7 @@
     - ImageMagick
     - the_silver_searcher
     - tmux
+    - yarn
     - wget
     - zsh
 
