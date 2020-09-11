@@ -5,7 +5,7 @@
     marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs-rubygems.yml"
 # TODO rubygem not working should sheck first
       tags:
         temp
@@ -19,12 +19,15 @@
       tags:
         display
     - block:
-      # - import_tasks: "{{ taskfiles_dir }}/utilities.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs-common.yml"
+
+      - import_tasks: "{{ taskfiles_dir }}/utilities.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/fzf.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/go.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/nodejs.yml"
       - import_tasks: "{{ taskfiles_dir }}/programs/ruby.yml"
-        # - import_tasks: "{{ taskfiles_dir }}/programs/serverless.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs-rubygems.yml"
+      - import_tasks: "{{ taskfiles_dir }}/programs/serverless.yml"
       tags:
         programs
     - block:

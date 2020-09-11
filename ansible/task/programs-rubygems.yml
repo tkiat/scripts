@@ -1,0 +1,5 @@
+- name: ruby gems -> install programs
+  become: true
+  gem:
+    name: asciidoctor
+    state: latest

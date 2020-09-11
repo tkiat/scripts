@@ -1,10 +1,20 @@
-# - name: display -> install xorg
-#   become: true
-#   package:
-#     name: xorg
-#     state: latest
+- name: display -> install xorg
+  become: true
+  package:
+    name: xorg
+    state: latest
 
-- name: display -> ensure "{{ ansible_env.HOME }}/Git-Forked" exists 
+- name: display -> install xorg utilities
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libXft-devel
+    - libX11-devel
+    - libXinerama-devel
+
+- name: display -> ensure "{{ ansible_env.HOME }}/Git-Forked" exists
   file:
     path: "{{ ansible_env.HOME }}/Git-Forked"
     state: directory

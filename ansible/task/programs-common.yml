@@ -4,12 +4,10 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - chromium
+    - firefox
     - ImageMagick
+      # - libreoffice
+    - obs
     - vlc
     - xpdf
-
-# - name: common programs installation (ruby gem)
-#   become: true
-#   gem:
-#     name: asciidoctor
-#     state: latest
