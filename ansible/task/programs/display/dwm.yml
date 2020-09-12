@@ -1,0 +1,6 @@
+- name: dwm -> git clone
+  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  with_items:
+    - { dest_dir: "{{ ansible_env.HOME }}/Git-Forked/forked-dwm",
+        http: "https://gitlab.com/tkiatd/forked-dwm.git",
+        ssh: "git@gitlab.com:tkiatd/forked-dwm.git" }

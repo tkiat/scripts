@@ -1,0 +1,6 @@
+- name: st -> git clone
+  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  with_items:
+    - { dest_dir: "{{ ansible_env.HOME }}/Git-Forked/forked-st",
+        http: "https://gitlab.com/tkiatd/forked-st.git",
+        ssh: "git@gitlab.com:tkiatd/forked-st.git" }

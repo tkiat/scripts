@@ -1,18 +1,23 @@
-- name: display -> check if {{ item.dir }} exists
+- name: git clone -> ensure {{ item.dest_dir | dirname }} exists
+  file:
+    path: "{{ item.dest_dir | dirname }}"
+    state: directory
+
+- name: git clone -> check if {{ item.dest_dir }} exists
   stat:
-    path: "{{ item.dir }}"
+    path: "{{ item.dest_dir }}"
   register: item_dir
 
-- name: display -> git clone (ssh)
+- name: git clone -> attempt ssh request
   git:
     repo: "{{ item.ssh }}"
-    dest: "{{ item.dir }}"
+    dest: "{{ item.dest_dir }}"
   ignore_errors: yes
-  register: git_clone_result
+  register: ssh_result
   when: item_dir.stat.exists == false
 
-- name: display -> git clone (http, fallback)
+- name: git clone -> attempt http request (fallback)
   git:
     repo: "{{ item.http }}"
-    dest: "{{ item.dir }}"
-  when: item_dir.stat.exists == false and git_clone_result.failed == true
+    dest: "{{ item.dest_dir }}"
+  when: item_dir.stat.exists == false and ssh_result.failed == true

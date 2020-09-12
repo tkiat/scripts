@@ -1,0 +1,5 @@
+- name: ImageMagick -> install
+  become: true
+  package:
+    name: ImageMagick
+    state: latest

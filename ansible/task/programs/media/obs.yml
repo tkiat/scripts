@@ -1,0 +1,5 @@
+- name: obs -> install
+  become: true
+  package:
+    name: obs
+    state: latest

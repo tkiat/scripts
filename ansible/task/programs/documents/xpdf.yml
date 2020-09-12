@@ -1,0 +1,5 @@
+- name: xpdf -> install
+  become: true
+  package:
+    name: xpdf
+    state: latest

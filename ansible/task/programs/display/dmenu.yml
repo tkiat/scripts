@@ -1,0 +1,6 @@
+- name: dmenu -> git clone
+  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  with_items:
+    - { dest_dir: "{{ ansible_env.HOME }}/Git-Forked/forked-dmenu",
+        http: "https://gitlab.com/tkiatd/forked-dmenu.git",
+        ssh: "git@gitlab.com:tkiatd/forked-dmenu.git" }

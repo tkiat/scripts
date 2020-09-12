@@ -1,4 +1,4 @@
-- name: install utilities (via pkg manager)
+- name: utilities -> install via pkg manager
   become: true
   package:
     name: "{{ item }}"
@@ -7,6 +7,7 @@
     - curl
     - gcc
     - git
+    - gparted
     - gpgme
     - make
     - mc

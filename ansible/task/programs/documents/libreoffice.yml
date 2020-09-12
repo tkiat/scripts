@@ -1,0 +1,5 @@
+- name: libreoffice -> install
+  become: true
+  package:
+    name: libreoffice
+    state: latest

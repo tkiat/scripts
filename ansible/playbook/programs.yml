@@ -1,43 +1,62 @@
 ---
 - hosts: "{{ hosts }}"
   vars:
-    taskfiles_dir: "../task"
+    task_dir: "../task"
+    task_reusable_dir: "../task-reusable"
     marker_section_end: "----------------------------------------"
   tasks:
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs-rubygems.yml"
-# TODO rubygem not working should sheck first
+      - import_tasks: "{{ task_dir }}/programs/utilities/utilities.yml"
+
+      - import_tasks: "{{ task_dir }}/programs/utilities/fzf.yml"
       tags:
-        temp
+        utilities
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/dotfiles.yml"
-      - import_tasks: "{{ taskfiles_dir }}/scripts.yml"
+      - import_tasks: "{{ task_dir }}/programs/cloud/serverless.yml"
       tags:
-        my_repo
+        cloud
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/display/display.yml"
+      - import_tasks: "{{ task_dir }}/programs/display/xorg.yml"
+
+      - import_tasks: "{{ task_dir }}/programs/display/dwm.yml"
+      - import_tasks: "{{ task_dir }}/programs/display/dmenu.yml"
+      - import_tasks: "{{ task_dir }}/programs/display/st.yml"
       tags:
         display
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs-common.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/main.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/pkg-manager/vim-pathogen.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/coc_nvim.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/emmet-vim.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/NERDTree.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/VimCompletesMe.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-go.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-terraform.yml"
 
-      - import_tasks: "{{ taskfiles_dir }}/utilities.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/fzf.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/go.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/nodejs.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/ruby.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs-rubygems.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/serverless.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/libreoffice.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/xpdf.yml"
       tags:
-        programs
+        documents
     - block:
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-pkg-manager/vim-pathogen.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/coc_nvim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/emmet-vim.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/NERDTree.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/VimCompletesMe.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/vim-go.yml"
-      - import_tasks: "{{ taskfiles_dir }}/programs/vim/vim-plugin/vim-terraform.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/asciidoctor.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/go.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/nodejs.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/ruby.yml"
       tags:
-        vim
+        languages
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/media/imagemagick.yml"
+      - import_tasks: "{{ task_dir }}/programs/media/obs.yml"
+      - import_tasks: "{{ task_dir }}/programs/media/vlc.yml"
+      tags:
+        media
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/web-browser/chromium.yml"
+      - import_tasks: "{{ task_dir }}/programs/web-browser/firefox.yml"
+      tags:
+        web_browser
+#     - block:
+#       - import_tasks: "{{ task_dir }}/programs/dotfiles.yml"
+#       - import_tasks: "{{ task_dir }}/programs/scripts.yml"
+#       tags:
+#         my_repo

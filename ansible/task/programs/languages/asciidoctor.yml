@@ -1,4 +1,4 @@
-- name: ruby gems -> install programs
+- name: asciidoctor -> install via RubyGems
   become: true
   gem:
     name: asciidoctor

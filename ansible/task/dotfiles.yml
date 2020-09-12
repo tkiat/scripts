@@ -1,3 +1,14 @@
+# - name: dwm -> ensure "{{ ansible_env.HOME }}/Git-Forked" exists
+#   file:
+#     path: "{{ ansible_env.HOME }}/Git-Forked"
+#     state: directory
+# 
+# - name: dwm -> git clone
+#   include_tasks: "{{ taskfiles_dir }}/../task-reusable/git-clone.yml"
+#   with_items:
+#     - { dir: "{{ ansible_env.HOME }}/Git-Forked/forked-dwm",
+#         http: "https://gitlab.com/tkiatd/forked-dwm.git",
+#         ssh: "git@gitlab.com:tkiatd/forked-dwm.git" }
 - name: scripts -> check if ~/Git/dotfiles exist
   stat:
     path: "{{ ansible_env.HOME }}/Git/dotfiles"
