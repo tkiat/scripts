@@ -25,12 +25,12 @@
     - block:
       - import_tasks: "{{ task_dir }}/programs/documents/vim/main.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/vim/pkg-manager/vim-pathogen.yml"
-      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/coc_nvim.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/coc-nvim.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/emmet-vim.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/NERDTree.yml"
-      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/VimCompletesMe.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-go.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-terraform.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vimcompletesme.yml"
 
       - import_tasks: "{{ task_dir }}/programs/documents/libreoffice.yml"
       - import_tasks: "{{ task_dir }}/programs/documents/xpdf.yml"
@@ -54,3 +54,8 @@
       - import_tasks: "{{ task_dir }}/programs/web-browser/firefox.yml"
       tags:
         web_browser
+
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vimcompletesme.yml"
+      tags:
+        test

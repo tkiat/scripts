@@ -11,7 +11,7 @@
 - name: append config file -> ensure config exists in {{ item.path }}
   blockinfile:
     path: "{{ item.path }}"
-    marker: "# {mark}"
+    marker: "{{ item.line_comment_char }} {mark}"
     marker_begin: "{{ config_marker_begin }}"
     marker_end: "{{ config_marker_end }}"
     block: |

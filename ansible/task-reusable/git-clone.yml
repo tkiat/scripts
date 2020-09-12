@@ -8,16 +8,18 @@
     path: "{{ item.dest_dir }}"
   register: item_dir
 
+  # prioritize ssh over http
 - name: git clone -> attempt ssh request
   git:
     repo: "{{ item.ssh }}"
     dest: "{{ item.dest_dir }}"
   ignore_errors: yes
-  register: ssh_result
-  when: item_dir.stat.exists == false
+    # register: ssh_result
+  when: item.ssh is defined and item_dir.stat.exists == false
 
-- name: git clone -> attempt http request (fallback)
+- name: git clone -> attempt http request
   git:
     repo: "{{ item.http }}"
     dest: "{{ item.dest_dir }}"
-  when: item_dir.stat.exists == false and ssh_result.failed == true
+  when: item.http is defined and item_dir.stat.exists == false
+    # and ssh_result.failed == true

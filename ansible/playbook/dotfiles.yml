@@ -26,4 +26,3 @@
       - { src: "{{ dotfiles_dir }}/.zprofile", dest: "{{ ansible_env.HOME }}/.zprofile"}
       - { src: "{{ dotfiles_dir }}/.zshenv", dest: "{{ ansible_env.HOME }}/.zshenv"}
       - { src: "{{ dotfiles_dir }}/.zshrc", dest: "{{ ansible_env.HOME }}/.zshrc"}
-

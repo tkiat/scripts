@@ -13,5 +13,6 @@
       export PATH=$PATH:$GOBIN
   with_items:
     - { name: "golang",
+        line_comment_char: "#",
         path: "{{ ansible_env.HOME }}/.zshenv",
         content: "{{ content }}"}

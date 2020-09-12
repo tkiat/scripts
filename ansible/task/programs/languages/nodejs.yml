@@ -12,6 +12,7 @@
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
   with_items:
     - { name: "nvm",
+        line_comment_char: "#",
         path: "{{ ansible_env.HOME }}/.zshenv",
         content: "{{ content }}"}
 

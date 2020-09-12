@@ -10,5 +10,6 @@
       export PATH="$HOME/.serverless/bin:$PATH"
   with_items:
     - { name: "serverless framework",
+        line_comment_char: "#",
         path: "{{ ansible_env.HOME }}/.zshenv",
         content: "{{ content }}"}

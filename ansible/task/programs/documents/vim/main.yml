@@ -1,33 +1,14 @@
-- name: vim -> install
+- name: vim -> install vim
   become: true
   package:
     name: vim
     state: latest
 
-- name: gvim -> install
+- name: vim -> install gvim
   become: true
   package:
     name: gvim
     state: latest
-
-- name: vim -> define config marker
-  set_fact:
-    marker_vim: "vim ===================================="
-
-- name: vim -> check if config exists in ~/.zprofile
-  shell: "cat ~/.zprofile | grep '{{ marker_vim }}' | wc -l"
-  register: vim_config
-  changed_when: false
-
-- name: vim -> ensure config exists in ~/.zprofile
-  blockinfile:
-    path: ~/.zprofile
-    marker: "# {mark}"
-    marker_begin: "{{ marker_vim }}"
-    marker_end: "{{ marker_section_end }}"
-    block: |
-      export EDITOR=vim
-  when: vim_config.stdout == "0"
 
 - name: vim directories -> create backup, swap, undo folders inside ~/.vim
   file:
@@ -38,26 +19,24 @@
     - ~/.vim/undo
     - ~/.vim/swap
 
-- name: vim directories -> define config marker
-  set_fact:
-    marker_vim_directories: "config: directories"
-
-- name: vim directories -> check if config exists in ~/.vimrc
-  shell: "cat ~/.vimrc | grep '{{ marker_vim_directories }}' | wc -l"
-  register: vim_directories_config
-  changed_when: false
-
-- name: vim directories -> ensure config exists in ~/.vimrc
-  blockinfile:
-    path: ~/.vimrc
-    marker: "\" {mark}"
-    marker_begin: "BEGIN {{ marker_vim_directories }}"
-    marker_end: "END"
-    block: |
+- name: vim -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content_vimrc: |
       set backupdir=~/.vim/backup//
       set directory=~/.vim/swap//
       set undodir=~/.vim/undo//
-  when: vim_directories_config.stdout == "0"
+    content_zshrc: |
+      export EDITOR=vim
+  with_items:
+    - { name: "config: directories",
+        line_comment_char: "\"",
+        path: "{{ ansible_env.HOME }}/.vimrc",
+        content: "{{ content_vimrc }}"}
+    - { name: "config: directories",
+        line_comment_char: "#",
+        path: "{{ ansible_env.HOME }}/.zshrc",
+        content: "{{ content_zshrc }}"}
 
 # - name: source ~/.vimrc
 #   shell: vim -c "source ~/.vimrc" -c qa

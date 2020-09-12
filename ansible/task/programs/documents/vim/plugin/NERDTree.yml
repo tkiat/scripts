@@ -1,31 +1,24 @@
 - name: NERDTree -> git clone
-  git:
-    repo: https://github.com/preservim/nerdtree.git
-    dest: ~/.vim/pack/vendor/start/nerdtree
+  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  with_items:
+    - { dest_dir: "{{ ansible_env.HOME }}/.vim/pack/vendor/start/nerdtree",
+        http: "https://github.com/preservim/nerdtree.git"}
 
 - name: NERDTree -> initiate
   shell: vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
   changed_when: false
 
-- name: NERDTree -> define config marker
-  set_fact:
-    marker_nerdtree: "plugin: NERDTree"
-
-- name: NERDTree -> check if config exists in ~/.vimrc
-  shell: "cat ~/.vimrc | grep '{{ marker_nerdtree }}' | wc -l"
-  register: nerdtree_config
-  changed_when: false
-
-- name: NERDTree -> ensure config exists in ~/.vimrc
-  blockinfile:
-    path: ~/.vimrc
-    marker: "\" {mark}"
-    marker_begin: "BEGIN {{ marker_nerdtree }}"
-    marker_end: "END"
-    block: |
+- name: NERDTree -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
       filetype plugin indent on
       let NERDTreeShowHidden=1
       let NERDTreeShowLineNumbers=1
       autocmd StdinReadPre * let s:std_in=1
       autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
-  when: nerdtree_config.stdout == "0"
+  with_items:
+    - { name: "plugin: NERDTree",
+        line_comment_char: "\"",
+        path: "{{ ansible_env.HOME }}/.vimrc",
+        content: "{{ content }}"}

@@ -23,5 +23,6 @@
         fi
     with_items:
       - { name: "scripts",
+          line_comment_char: "#",
           path: "{{ ansible_env.HOME }}/.zshenv",
           content: "{{ content }}"}

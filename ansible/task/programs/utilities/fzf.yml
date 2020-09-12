@@ -13,5 +13,6 @@
       export FZF_DEFAULT_OPTS="--layout=reverse --exact"
   with_items:
     - { name: "fzf",
+        line_comment_char: "#",
         path: "{{ ansible_env.HOME }}/.zshenv",
         content: "{{ content }}"}

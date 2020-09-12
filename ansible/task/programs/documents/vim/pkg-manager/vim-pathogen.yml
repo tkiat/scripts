@@ -11,21 +11,13 @@
     url: https://tpo.pe/pathogen.vim
     dest: ~/.vim/autoload/pathogen.vim
 
-- name: vim-pathogen -> define config marker
-  set_fact:
-    marker_vim_pathogen: "pkg manager: vim-pathogen"
-
-- name: vim-pathogen -> check if config exists in ~/.vimrc
-  shell: "cat ~/.vimrc | grep '{{ marker_vim_pathogen }}' | wc -l"
-  register: vim_pathogen_config
-  changed_when: false
-
-- name: vim-pathogen -> ensure config exists in ~/.vimrc
-  blockinfile:
-    path: ~/.vimrc
-    marker: "\" {mark}"
-    marker_begin: "BEGIN {{ marker_vim_pathogen }}"
-    marker_end: "END"
-    block: |
+- name: vim-pathogen -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
       call pathogen#infect()
-  when: vim_pathogen_config.stdout == "0"
+  with_items:
+    - { name: "pkg manager: vim-pathogen",
+        line_comment_char: "\"",
+        path: "{{ ansible_env.HOME }}/.vimrc",
+        content: "{{ content }}"}
