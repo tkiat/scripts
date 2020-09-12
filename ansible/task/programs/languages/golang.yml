@@ -1,0 +1,17 @@
+- name: golang -> install
+  become: true
+  package:
+    name: go
+    state: latest
+
+- name: golang -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
+      export GOPATH=$HOME/go
+      export GOBIN=$GOPATH/bin
+      export PATH=$PATH:$GOBIN
+  with_items:
+    - { name: "golang",
+        path: "{{ ansible_env.HOME }}/.zshenv",
+        content: "{{ content }}"}

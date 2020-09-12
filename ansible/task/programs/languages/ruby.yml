@@ -4,23 +4,14 @@
     name: ruby
     state: latest
 
-- name: ruby -> define config marker
-  set_fact:
-    marker_ruby: "ruby ==================================="
-
-- name: ruby -> check if config exists in ~/.zshenv
-  shell: "cat ~/.zshenv | grep '{{ marker_ruby }}' | wc -l"
-  register: ruby_config
-  changed_when: false
-
-- name: ruby -> ensure config exists in ~/.zshenv
-  blockinfile:
-    path: ~/.zshenv
-    marker: "# {mark}"
-    marker_begin: "{{ marker_ruby }}"
-    marker_end: "{{ marker_section_end }}"
-    block: |
+- name: ruby -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
       if which ruby >/dev/null && which gem >/dev/null; then
           PATH="$(ruby -r rubygems -e 'puts Gem.user_dir')/bin:$PATH"
       fi
-  when: ruby_config.stdout == "0"
+  with_items:
+    - { name: "ruby",
+        path: "{{ ansible_env.HOME }}/.zshenv",
+        content: "{{ content }}"}

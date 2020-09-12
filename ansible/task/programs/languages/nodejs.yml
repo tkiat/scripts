@@ -4,25 +4,16 @@
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
 
-- name: nvm -> define config marker
-  set_fact:
-    marker_nvm: "nvm ===================================="
-
-- name: nvm -> check if config exists in ~/.zshenv
-  shell: "cat ~/.zshenv | grep '{{ marker_nvm }}' | wc -l"
-  register: nvm_config
-  changed_when: false
-
-- name: nvm -> ensure config exists in ~/.zshenv
-  blockinfile:
-    path: ~/.zshenv
-    marker: "# {mark}"
-    marker_begin: "{{ marker_nvm }}"
-    marker_end: "{{ marker_section_end }}"
-    block: |
+- name: nvm -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
       export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
       [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  when: nvm_config.stdout == "0"
+  with_items:
+    - { name: "nvm",
+        path: "{{ ansible_env.HOME }}/.zshenv",
+        content: "{{ content }}"}
 
 - name: nodejs -> install node lts from nvm
   shell: . {{ ansible_env.HOME }}/.zshenv && nvm install --lts
@@ -34,4 +25,3 @@
 - name: nodejs -> source nvm
   shell: . {{ ansible_env.HOME }}/.nvm/nvm.sh
   changed_when: false
-

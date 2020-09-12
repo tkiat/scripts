@@ -1,0 +1,27 @@
+---
+- hosts: "{{ hosts }}"
+  vars:
+    task_reusable_dir: "../task-reusable"
+  tasks:
+  - name: scripts -> git clone
+    include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+    with_items:
+      - { dest_dir: "{{ ansible_env.HOME }}/Git/scripts",
+          http: "https://github.com/tkiatd/scripts.git",
+          ssh: "git@github.com:tkiatd/scripts.git" }
+  - name: scripts -> append config file
+    include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+    vars:
+      content: |
+        local git_dir=~/Git
+        if [ -d $git_dir/scripts/ ]; then
+          for dir in $git_dir/scripts/*; do
+            if [[ $(basename $dir) == bash || $(basename $dir) == python ]]; then
+              export PATH=$PATH:$dir
+            fi
+          done
+        fi
+    with_items:
+      - { name: "scripts",
+          path: "{{ ansible_env.HOME }}/.zshenv",
+          content: "{{ content }}"}

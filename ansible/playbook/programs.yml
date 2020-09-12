@@ -3,7 +3,6 @@
   vars:
     task_dir: "../task"
     task_reusable_dir: "../task-reusable"
-    marker_section_end: "----------------------------------------"
   tasks:
     - block:
       - import_tasks: "{{ task_dir }}/programs/utilities/utilities.yml"
@@ -39,7 +38,7 @@
         documents
     - block:
       - import_tasks: "{{ task_dir }}/programs/languages/asciidoctor.yml"
-      - import_tasks: "{{ task_dir }}/programs/languages/go.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/golang.yml"
       - import_tasks: "{{ task_dir }}/programs/languages/nodejs.yml"
       - import_tasks: "{{ task_dir }}/programs/languages/ruby.yml"
       tags:
@@ -55,8 +54,3 @@
       - import_tasks: "{{ task_dir }}/programs/web-browser/firefox.yml"
       tags:
         web_browser
-#     - block:
-#       - import_tasks: "{{ task_dir }}/programs/dotfiles.yml"
-#       - import_tasks: "{{ task_dir }}/programs/scripts.yml"
-#       tags:
-#         my_repo

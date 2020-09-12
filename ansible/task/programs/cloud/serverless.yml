@@ -3,21 +3,12 @@
     name: serverless
     global: yes
 
-- name: serverless framework -> define config marker
-  set_fact:
-    marker_serverless_framework: "serverless framework ==================="
-
-- name: serverless framework -> check if config exists in ~/.zshenv
-  shell: "cat ~/.zshenv | grep '{{ marker_serverless_framework }}' | wc -l"
-  register: serverless_framework_config
-  changed_when: false
-
-- name: serverless framework -> ensure config exists in ~/.zshenv
-  blockinfile:
-    path: ~/.zshenv
-    marker: "# {mark}"
-    marker_begin: "{{ marker_serverless_framework }}"
-    marker_end: "{{ marker_section_end }}"
-    block: |
+- name: serverless -> append config file
+  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  vars:
+    content: |
       export PATH="$HOME/.serverless/bin:$PATH"
-  when: serverless_framework_config.stdout == "0"
+  with_items:
+    - { name: "serverless framework",
+        path: "{{ ansible_env.HOME }}/.zshenv",
+        content: "{{ content }}"}
