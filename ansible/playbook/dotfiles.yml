@@ -22,6 +22,7 @@
       - { src: "{{ dotfiles_dir }}/.vimrc", dest: "{{ ansible_env.HOME }}/.vimrc"}
       - { src: "{{ dotfiles_dir }}/.vim/colors", dest: "{{ ansible_env.HOME }}/.vim/colors"}
       - { src: "{{ dotfiles_dir }}/.vim/template", dest: "{{ ansible_env.HOME }}/.vim/template"}
+      - { src: "{{ dotfiles_dir }}/.xinitrc", dest: "{{ ansible_env.HOME }}/.xinitrc"}
       - { src: "{{ dotfiles_dir }}/.xpdfrc", dest: "{{ ansible_env.HOME }}/.xpdfrc"}
       - { src: "{{ dotfiles_dir }}/.zprofile", dest: "{{ ansible_env.HOME }}/.zprofile"}
       - { src: "{{ dotfiles_dir }}/.zshenv", dest: "{{ ansible_env.HOME }}/.zshenv"}
