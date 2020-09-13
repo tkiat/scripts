@@ -1,26 +1,8 @@
 - name: utilities -> install via pkg manager
   become: true
+  vars:
+    packages: ['curl', 'gcc', 'git', 'gparted', 'gpgme', 'make', 'mc', 'pkg-config', 'python', 'redshift', 'the_silver_searcher', 'tldr', 'tmux', 'tree', 'unzip', 'wget', 'xclip', 'xz', 'yarn', 'zsh']
   package:
     name: "{{ item }}"
     state: latest
-  with_items:
-    - curl
-    - gcc
-    - git
-    - gparted
-    - gpgme
-    - make
-    - mc
-    - pkg-config
-    - python
-    - redshift
-    - the_silver_searcher
-    - tldr
-    - tmux
-    - tree
-    - unzip
-    - wget
-    - xclip
-    - xz
-    - yarn
-    - zsh
+  with_items: "{{ packages }}"

@@ -1,0 +1,61 @@
+---
+- hosts: "{{ hosts }}"
+  vars:
+    task_dir: "../task"
+    task_reusable_dir: "../task-reusable"
+  tasks:
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/utilities/utilities.yml"
+
+      - import_tasks: "{{ task_dir }}/programs/utilities/fzf.yml"
+      tags:
+        utilities
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/cloud/serverless.yml"
+      tags:
+        cloud
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/display/xorg.yml"
+
+      - import_tasks: "{{ task_dir }}/programs/display/dwm.yml"
+      - import_tasks: "{{ task_dir }}/programs/display/dmenu.yml"
+      - import_tasks: "{{ task_dir }}/programs/display/st.yml"
+      tags:
+        display
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/main.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/pkg-manager/vim-pathogen.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/coc-nvim.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/emmet-vim.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/nerdtree.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-go.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vim-terraform.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vimcompletesme.yml"
+
+      - import_tasks: "{{ task_dir }}/programs/documents/libreoffice.yml"
+      - import_tasks: "{{ task_dir }}/programs/documents/xpdf.yml"
+      tags:
+        documents
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/languages/asciidoctor.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/golang.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/nodejs.yml"
+      - import_tasks: "{{ task_dir }}/programs/languages/ruby.yml"
+      tags:
+        languages
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/media/imagemagick.yml"
+      - import_tasks: "{{ task_dir }}/programs/media/obs.yml"
+      - import_tasks: "{{ task_dir }}/programs/media/vlc.yml"
+      tags:
+        media
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/web-browser/chromium.yml"
+      - import_tasks: "{{ task_dir }}/programs/web-browser/firefox.yml"
+      tags:
+        web_browser
+
+    - block:
+      - import_tasks: "{{ task_dir }}/programs/documents/vim/plugin/vimcompletesme.yml"
+      tags:
+        test

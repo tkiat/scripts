@@ -1,0 +1,7 @@
+- name: Set keymap (void linux)
+  become: true
+  lineinfile:
+    path: /etc/rc.conf
+    regexp: '^KAYMAP='
+    line: 'KEYMAP=us'
+  when: ansible_os_family == "void"

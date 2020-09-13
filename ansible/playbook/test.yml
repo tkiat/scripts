@@ -1,0 +1,9 @@
+---
+- hosts: "{{ hosts }}"
+  vars:
+    task_dir: "../task"
+    task_reusable_dir: "../task-reusable"
+  tasks:
+  - import_tasks: "{{ task_dir }}/programs/audio/alsa.yml"
+#   - import_tasks: "{{ task_dir }}/configs/keymap.yml"
+#   - import_tasks: "{{ task_dir }}/configs/timezone.yml"

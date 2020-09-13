@@ -14,12 +14,11 @@
     repo: "{{ item.ssh }}"
     dest: "{{ item.dest_dir }}"
   ignore_errors: yes
-    # register: ssh_result
+  register: ssh_result
   when: item.ssh is defined and item_dir.stat.exists == false
 
 - name: git clone -> attempt http request
   git:
     repo: "{{ item.http }}"
     dest: "{{ item.dest_dir }}"
-  when: item.http is defined and item_dir.stat.exists == false
-    # and ssh_result.failed == true
+  when: item_dir.stat.exists == false and item.http is defined and (item.ssh is not defined or ssh_result.failed == true)

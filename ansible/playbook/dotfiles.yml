@@ -17,6 +17,7 @@
       dest: "{{ item.dest }}"
       state: link
     loop:
+      # - { src: "{{ dotfiles_dir }}/.asoundrc", dest: "{{ ansible_env.HOME }}/.asoundrc"}
       - { src: "{{ dotfiles_dir }}/.ssh/config", dest: "{{ ansible_env.HOME }}/.ssh/config"}
       - { src: "{{ dotfiles_dir }}/.tmux.conf", dest: "{{ ansible_env.HOME }}/.tmux.conf"}
       - { src: "{{ dotfiles_dir }}/.vimrc", dest: "{{ ansible_env.HOME }}/.vimrc"}
