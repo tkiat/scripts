@@ -1,0 +1,8 @@
+- name: st -> git clone
+  include_role:
+    name: shared
+    tasks_from: git-clone
+  with_items:
+    - { dest_dir: "{{ git_dir }}/forked-st",
+        http: "https://gitlab.com/tkiatd/forked-st.git",
+        ssh: "git@gitlab.com:tkiatd/forked-st.git" }

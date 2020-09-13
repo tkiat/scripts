@@ -1,0 +1,24 @@
+- name: git clone -> ensure {{ item.dest_dir | dirname }} exists
+  file:
+    path: "{{ item.dest_dir | dirname }}"
+    state: directory
+
+- name: git clone -> check if {{ item.dest_dir }} exists
+  stat:
+    path: "{{ item.dest_dir }}"
+  register: item_dir
+
+  # prioritize ssh over http
+- name: git clone -> attempt ssh request
+  git:
+    repo: "{{ item.ssh }}"
+    dest: "{{ item.dest_dir }}"
+  ignore_errors: yes
+  register: ssh_result
+  when: item.ssh is defined and item_dir.stat.exists == false
+
+- name: git clone -> attempt http request
+  git:
+    repo: "{{ item.http }}"
+    dest: "{{ item.dest_dir }}"
+  when: item_dir.stat.exists == false and item.http is defined and (item.ssh is not defined or ssh_result.failed == true)

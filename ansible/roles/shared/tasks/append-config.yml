@@ -1,0 +1,19 @@
+- name: append config file -> define config marker
+  set_fact:
+    config_marker_begin: "{{ (item.name  + ' =======================================')[:40] }}"
+    config_marker_end: "----------------------------------------"
+
+- name: append config file -> check if config exists in {{ item.path }}
+  shell: "cat {{ item.path }} | grep '{{ config_marker_begin }}' | wc -l"
+  register: config_marker_begin_exist
+  changed_when: false
+
+- name: append config file -> ensure config exists in {{ item.path }}
+  blockinfile:
+    path: "{{ item.path }}"
+    marker: "{{ item.line_comment_char }} {mark}"
+    marker_begin: "{{ config_marker_begin }}"
+    marker_end: "{{ config_marker_end }}"
+    block: |
+      {{ item.content }}
+  when: config_marker_begin_exist.stdout == "0"

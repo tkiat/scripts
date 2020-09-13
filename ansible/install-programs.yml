@@ -1,0 +1,11 @@
+---
+- name: execute playbook.yml
+  hosts: localhost
+  remote_user: tkiatd
+  vars:
+    to_delete: nothing
+  roles:
+    # - audio
+    # - role: cloud # depends on npm
+#     - role: display
+#       git_dir: "{{ ansible_env.HOME }}/Git"

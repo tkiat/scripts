@@ -1,0 +1,17 @@
+- name: serverless framework -> install globally
+  npm:
+    name: serverless
+    global: yes
+
+- name: serverless -> append config file
+  include_role:
+    name: shared
+    tasks_from: append-config
+  vars:
+    content: |
+      export PATH="$HOME/.serverless/bin:$PATH"
+  with_items:
+    - { name: "serverless framework",
+        line_comment_char: "#",
+        path: "{{ ansible_env.HOME }}/.zshenv",
+        content: "{{ content }}"}
