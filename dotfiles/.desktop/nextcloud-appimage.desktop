@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/run/media/tkiatd/Shared/AppImage/Nextcloud-2.6.4-x86_64.AppImage
+Name=NextCloud
+Terminal=false
+Type=Application

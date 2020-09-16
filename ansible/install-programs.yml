@@ -3,9 +3,10 @@
   hosts: localhost
   remote_user: tkiatd
   vars:
-    to_delete: nothing
+    dotfiles_dir: "{{ ansible_env.HOME }}/Git/dotfiles"
+    git_dir: "{{ ansible_env.HOME }}/Git"
   roles:
+    #- prerequisites
+    - display
     # - audio
     # - role: cloud # depends on npm
-#     - role: display
-#       git_dir: "{{ ansible_env.HOME }}/Git"

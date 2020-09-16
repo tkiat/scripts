@@ -1,0 +1,43 @@
+---
+- name: install git
+  become: yes
+  package:
+    name: git
+    state: latest
+
+- name: tkiatd/dotfiles -> git clone
+  include_role:
+    name: shared
+    tasks_from: git-clone
+  with_items:
+    - { dest_dir: "{{ dotfiles_dir }}",
+        http: "https://github.com/tkiatd/dotfiles.git",
+        ssh: "git@github.com:tkiatd/dotfiles.git" }
+
+- name: install prerequisites (freebsd)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gmake
+  when: ansible_os_family == "FreeBSD"
+#- name: install prerequisites
+#  become: yes
+#  package:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#    - gcc
+#    - go
+#    - node
+#    - python3
+#    - ruby
+#    - vim
+
+          #- name: copy .zshrc
+          #  copy:
+          #    src: "{{ dotfiles_dir }}/.zshrc"
+          #    dest: "{{ ansible_env.HOME }}"
+
+      #- name: install zsh

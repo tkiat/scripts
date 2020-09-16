@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/opt/FreeFileSync/FreeFileSync
+Icon=/opt/FreeFileSync/Resources/FreeFileSync.png
+Name=FreeFileSync
+Terminal=false
+Type=Application

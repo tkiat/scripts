@@ -1,0 +1,24 @@
+local mydir="/run/media/tkiatd/Shared"
+
+alias 2gt_content="cd "$mydir"/Content"
+alias 2gt_download="cd "$mydir"/Download"
+alias 2gt_droplet="ssh tkiatd@178.128.218.134"
+alias 2gt_git="cd "$mydir"/Git"
+alias 2gt_local="cd "$mydir"/Local"
+alias 2gt_music="cd "$mydir"/Content/Music"
+alias 2gt_nextcloud="cd "$mydir"/Nextcloud"
+alias 2rm_podman_images="podman rmi \$(podman images -a -q)"
+
+alias 2tmux-theme1="\
+	tmux split-window -v -p 30 && \
+	tmux split-window -h -p 35"
+
+alias 2open-tmux-backup="\
+tmux new-session \; \
+	send-keys 'mc' C-m \; \
+	split-window -v -p 30 \; \
+	send-keys '2gt_music' C-m \; \
+	send-keys 'cmus' C-m \; \
+	send-keys '5' \; \
+	split-window -h -p 35 \; \
+	send-keys '2start-pomodoro.py' C-m \;"

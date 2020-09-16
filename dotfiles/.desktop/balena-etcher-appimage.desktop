@@ -1,0 +1,6 @@
+[Desktop Entry]
+Encoding=UTF-8
+Exec=/run/media/tkiatd/Shared/AppImage/balenaEtcher-1.5.79-x64.AppImage
+Name=balenaEtcher
+Terminal=false
+Type=Application

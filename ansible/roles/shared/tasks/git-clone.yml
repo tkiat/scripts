@@ -13,6 +13,7 @@
   git:
     repo: "{{ item.ssh }}"
     dest: "{{ item.dest_dir }}"
+    version: "{{ item.branch | default('master') }}"
   ignore_errors: yes
   register: ssh_result
   when: item.ssh is defined and item_dir.stat.exists == false
@@ -21,4 +22,5 @@
   git:
     repo: "{{ item.http }}"
     dest: "{{ item.dest_dir }}"
+    version: "{{ item.branch | default('master') }}"
   when: item_dir.stat.exists == false and item.http is defined and (item.ssh is not defined or ssh_result.failed == true)
