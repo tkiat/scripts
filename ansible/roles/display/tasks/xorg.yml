@@ -3,8 +3,40 @@
   package:
     name: xorg
     state: latest
+    
+- name: xorg -> install related libraries (freebsd)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libX11
+    - libXft
+    - libXinerama
+  when: ansible_os_family == "FreeBSD"
+
+- name: xorg -> install related libraries (void linux)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libXft-devel
+    - libX11-devel
+    - libXinerama-devel
+  when: ansible_os_family == "void"
 
 - name: xorg -> copy config to ~/.xinitrc
   copy:
     src: "{{ dotfiles_dir }}/.xinitrc"
     dest: "{{ ansible_env.HOME }}"
+    force: no
+
+- name: xorg -> install related utilities
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - xclip
+    - xpdf

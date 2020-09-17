@@ -14,6 +14,16 @@
         http: "https://github.com/tkiatd/dotfiles.git",
         ssh: "git@github.com:tkiatd/dotfiles.git" }
 
+- name: install prerequisites
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - curl
+    - gcc
+    - python3
+
 - name: install prerequisites (freebsd)
   become: yes
   package:
@@ -21,23 +31,64 @@
     state: latest
   with_items:
     - gmake
+    - node
   when: ansible_os_family == "FreeBSD"
-#- name: install prerequisites
-#  become: yes
-#  package:
-#    name: "{{ item }}"
-#    state: latest
-#  with_items:
-#    - gcc
-#    - go
-#    - node
-#    - python3
-#    - ruby
-#    - vim
 
+- name: install prerequisites (linux)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - make
+  when: ansible_os_family != "FreeBSD"
+
+- include_tasks: nodejs-nvm.yml
+  when: ansible_os_family != "FreeBSD"
+
+- name: install utilities
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gpgme
+    - mc
+    - redshift
+    - tmux
+    - tree
+    - unzip
+    - wget
+    - yarn
+
+- name: install utilities (freebsd)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gpart
+  when: ansible_os_family == "FreeBSD"
+
+- name: install utilities (linux)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gparted
+    - tldr
+    - xz
+  when: ansible_os_family != "FreeBSD"
+
+      # 'xclip'
+    #- go
+    #- ruby
+    #- vim
+    
+      #- name: install zsh
           #- name: copy .zshrc
           #  copy:
           #    src: "{{ dotfiles_dir }}/.zshrc"
           #    dest: "{{ ansible_env.HOME }}"
 
-      #- name: install zsh

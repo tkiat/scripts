@@ -1,57 +1,36 @@
-#- name: dwm -> git clone
-#  include_role:
-#    name: shared
-#    tasks_from: git-clone
-#  with_items:
-#    - { dest_dir: "{{ git_dir }}/suckless-dwm",
-#        http: "https://gitlab.com/tkiatd/suckless-dwm.git",
-#        ssh: "git@gitlab.com:tkiatd/suckless-dwm.git",
-#        branch: "my-config"}
-    
-          #- name: dwm -> install related libraries (freebsd)
-          #  become: true
-          #  package:
-          #    name: "{{ item }}"
-          #    state: latest
-          #  with_items:
-          #    - libX11
-          #    - libXft
-          #  when: ansible_os_family == "FreeBSD"
-          #
-- name: dwm -> sudo make install (linux)
+- name: dwm -> git clone
+  include_role:
+    name: shared
+    tasks_from: git-clone
+  with_items:
+    - { dest_dir: "{{ git_dir }}/suckless-dwm",
+        http: "https://gitlab.com/tkiatd/suckless-dwm.git",
+        ssh: "git@gitlab.com:tkiatd/suckless-dwm.git",
+        branch: "my-config"}
+
+- name: dwm -> compile (freebsd)
+  become: yes
+  command: gmake install clean
+  args:
+    chdir: "{{ git_dir }}/suckless-dwm"
+  when: ansible_os_family == "FreeBSD"
+          
+- name: dwm -> compile (linux)
   become: yes
   make:
     chdir: "{{ git_dir }}/suckless-dwm"
     target: install
   when: ansible_os_family != "FreeBSD"
 
-- name: dwm -> sudo make install (freebsd)
-  become: yes
-  command: gmake install clean
-  args:
-    chdir: "{{ ansible_env.HOME }}/Git/suckless-dwm"
-  when: ansible_os_family == "FreeBSD"
-
-#- name: dwm -> append config to .xinitrc
-#  include_role:
-#    name: shared
-#    tasks_from: append-config
-#  vars:
-#    content: |
-#      exec dwm
-#  with_items:
-#    - { name: "dwm",
-#        line_comment_char: "#",
-#        path: "{{ ansible_env.HOME }}/.xinitrc",
-#        content: "{{ content }}"}
-
-          #- name: xorg -> install related libraries (void linux)
-          #  become: true
-          #  package:
-          #    name: "{{ item }}"
-          #    state: latest
-          #  with_items:
-          #    - libXft-devel
-          #    - libX11-devel
-          #    - libXinerama-devel
-          #  when: ansible_os_family == "void"
+- name: dwm -> append config to .xinitrc
+  include_role:
+    name: shared
+    tasks_from: append-config
+  vars:
+    content: |
+      exec dwm
+  with_items:
+    - { name: "dwm",
+        line_comment_char: "#",
+        path: "{{ ansible_env.HOME }}/.xinitrc",
+        content: "{{ content }}"}
