@@ -3,10 +3,12 @@
   hosts: localhost
   remote_user: tkiatd
   vars:
-    dotfiles_dir: "{{ ansible_env.HOME }}/Git/dotfiles"
-    git_dir: "{{ ansible_env.HOME }}/Git"
+    #dotfiles_dir: "{{ ansible_env.HOME }}/Git/dotfiles"
+    dotfiles_dir: "/mnt/Shared/Git/dotfiles"
+    git_dir: "/mnt/Shared/Git"
   roles:
     #- prerequisites
-    - display
+    #- display
+    - browser
     # - audio
     # - role: cloud # depends on npm
