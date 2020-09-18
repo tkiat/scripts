@@ -9,6 +9,6 @@
   roles:
     #- prerequisites
     #- display
-    - browser
-    # - audio
+    #- internet
+    - office
     # - role: cloud # depends on npm

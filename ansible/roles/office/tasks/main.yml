@@ -1,0 +1,10 @@
+---
+- include_tasks: "vim/main.yml"
+- include_tasks: "vim/pkg-manager/vim-pathogen.yml"
+  #- include_tasks: "vim/plugin/coc-nvim.yml"
+  #- include_tasks: "vim/plugin/emmet-vim.yml"
+  #- include_tasks: "vim/plugin/nerdtree.yml"
+  #- include_tasks: "vim/plugin/vim-go.yml"
+  #- include_tasks: "vim/plugin/vim-terraform.yml"
+  #- include_tasks: "vim/plugin/vimcompletesme.yml"
+

@@ -1,0 +1,34 @@
+- name: surf -> git clone
+  include_role:
+    name: shared
+    tasks_from: git-clone
+  with_items:
+    - { dest_dir: "{{ git_dir }}/suckless-surf",
+        http: "https://gitlab.com/tkiatd/suckless-surf.git",
+        ssh: "git@gitlab.com:tkiatd/suckless-surf.git",
+        branch: "my-config"}
+
+- name: surf -> install required dependencies (freebsd)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - make++
+    - gcr
+    - webkit2-gtk3
+  when: ansible_os_family == "FreeBSD"
+
+- name: surf -> compile (freebsd)
+  become: yes
+  command: makepp install clean
+  args:
+    chdir: "{{ git_dir }}/suckless-surf"
+  when: ansible_os_family == "FreeBSD"
+
+- name: surf -> compile (linux)
+  become: yes
+  make:
+    chdir: "{{ git_dir }}/suckless-surf"
+    target: install
+  when: ansible_os_family != "FreeBSD"

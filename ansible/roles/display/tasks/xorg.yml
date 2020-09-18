@@ -26,7 +26,7 @@
     - libXinerama-devel
   when: ansible_os_family == "void"
 
-- name: xorg -> copy config to ~/.xinitrc
+- name: xorg -> create ~/.xinitrc with predefined content if not exist
   copy:
     src: "{{ dotfiles_dir }}/.xinitrc"
     dest: "{{ ansible_env.HOME }}"

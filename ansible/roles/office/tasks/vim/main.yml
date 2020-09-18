@@ -1,0 +1,62 @@
+- name: vim -> install vim
+  become: true
+  package:
+    name: vim
+    state: latest
+
+- name: vim -> create ~/.vimrc with predefined content if not exist
+  copy:
+    src: "{{ dotfiles_dir }}/.vimrc"
+    dest: "{{ ansible_env.HOME }}"
+    force: no
+
+- name: vim -> create ~/.vim/colors/tkiatd.vim with predefined content if not exist
+  include_role:
+    name: shared
+    tasks_from: copy-file
+  with_items:
+    - { src: "{{ dotfiles_dir }}/.vim/colors/tkiatd.vim",
+        dest: "{{ ansible_env.HOME }}/.vim/colors/tkiatd.vim"}
+
+- name: vim -> install gvim
+  become: true
+  package:
+    name: gvim
+    state: latest
+  when: ansible_os_family != "FreeBSD"
+
+- name: vim directories -> create backup, swap, undo folders inside ~/.vim
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.vim/backup
+    - ~/.vim/undo
+    - ~/.vim/swap
+
+- name: vim -> append config file
+  include_role:
+    name: shared
+    tasks_from: append-config
+  vars:
+      #    content_zshrc: |
+      #      export EDITOR=vim
+    content_vimrc_1: |
+      set backupdir=~/.vim/backup//
+      set directory=~/.vim/swap//
+      set undodir=~/.vim/undo//
+    content_vimrc_2:
+      colorscheme tkiatd
+  with_items:
+    - { name: "directories",
+        line_comment_char: "\"",
+        path: "{{ ansible_env.HOME }}/.vimrc",
+        content: "{{ content_vimrc_1 }}"}
+    - { name: "color scheme",
+        line_comment_char: "\"",
+        path: "{{ ansible_env.HOME }}/.vimrc",
+        content: "{{ content_vimrc_2 }}"}
+          #    - { name: "config: directories",
+          #        line_comment_char: "#",
+          #        path: "{{ ansible_env.HOME }}/.zshrc",
+          #        content: "{{ content_zshrc }}"}

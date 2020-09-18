@@ -31,6 +31,7 @@
     state: latest
   with_items:
     - gmake
+    - make++
     - node
   when: ansible_os_family == "FreeBSD"
 

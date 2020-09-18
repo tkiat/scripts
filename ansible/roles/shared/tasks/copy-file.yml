@@ -1,0 +1,10 @@
+- name: copy file -> ensure {{ item.dest | dirname }} exists
+  file:
+    path: "{{ item.dest | dirname }}"
+    state: directory
+
+- name: copy file -> copy file if not exist
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    force: no
