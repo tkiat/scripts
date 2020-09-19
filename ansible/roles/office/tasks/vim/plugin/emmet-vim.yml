@@ -1,5 +1,7 @@
 - name: emmet-vim -> git clone
-  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  include_role:
+    name: shared
+    tasks_from: git-clone
   with_items:
     - { dest_dir: "{{ ansible_env.HOME }}/.vim/bundle/emmet-vim",
         http: "https://github.com/mattn/emmet-vim.git"}

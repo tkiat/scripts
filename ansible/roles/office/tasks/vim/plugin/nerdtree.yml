@@ -1,5 +1,7 @@
 - name: NERDTree -> git clone
-  include_tasks: "{{ task_reusable_dir }}/git-clone.yml"
+  include_role:
+    name: shared
+    tasks_from: git-clone
   with_items:
     - { dest_dir: "{{ ansible_env.HOME }}/.vim/pack/vendor/start/nerdtree",
         http: "https://github.com/preservim/nerdtree.git"}
@@ -9,7 +11,9 @@
   changed_when: false
 
 - name: NERDTree -> append config file
-  include_tasks: "{{ task_reusable_dir }}/append-config.yml"
+  include_role:
+    name: shared
+    tasks_from: append-config
   vars:
     content: |
       filetype plugin indent on

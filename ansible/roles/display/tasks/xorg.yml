@@ -3,7 +3,7 @@
   package:
     name: xorg
     state: latest
-    
+
 - name: xorg -> install related libraries (freebsd)
   become: true
   package:
@@ -31,6 +31,19 @@
     src: "{{ dotfiles_dir }}/.xinitrc"
     dest: "{{ ansible_env.HOME }}"
     force: no
+
+- name: xorg -> append config to .zprofile
+  include_role:
+    name: shared
+    tasks_from: append-config
+  vars:
+    content: |
+      startx
+  with_items:
+    - { name: "xorg",
+        line_comment_char: "#",
+        path: "{{ ansible_env.HOME }}/.zprofile",
+        content: "{{ content }}"}
 
 - name: xorg -> install related utilities
   become: true

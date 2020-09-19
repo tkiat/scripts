@@ -30,9 +30,12 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - coreutils
     - gmake
+    - gtar
     - make++
     - node
+    - npm
   when: ansible_os_family == "FreeBSD"
 
 - name: install prerequisites (linux)
