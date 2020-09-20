@@ -6,8 +6,9 @@
     dotfiles_dir: "/mnt/Shared/Git/dotfiles"
     git_dir: "/mnt/Shared/Git"
   roles:
-    - prerequisites
-    - shell
     - display
-    - internet
-    - office
+#     - prerequisites
+#     - shell
+#     - display
+#     - internet
+#     - office
