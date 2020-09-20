@@ -3,21 +3,3 @@
   package:
     name: zsh
     state: latest
-
-- name: zshrc -> create ~/.zprofile with predefined content if not exist
-  copy:
-    src: "{{ dotfiles_dir }}/.zprofile"
-    dest: "{{ ansible_env.HOME }}"
-    force: no
-
-- name: zshrc -> create ~/.zshenv with predefined content if not exist
-  copy:
-    src: "{{ dotfiles_dir }}/.zshenv"
-    dest: "{{ ansible_env.HOME }}"
-    force: no
-
-- name: zshrc -> create ~/.zshrc with predefined content if not exist
-  copy:
-    src: "{{ dotfiles_dir }}/.zshrc"
-    dest: "{{ ansible_env.HOME }}"
-    force: no

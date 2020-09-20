@@ -1,2 +1,7 @@
 ---
+# shell
+- include_tasks: bash.yml
 - include_tasks: zsh.yml
+
+# shell utilities
+- include_tasks: fzf.yml

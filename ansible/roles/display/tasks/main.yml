@@ -1,7 +1,7 @@
 ---
-# - include_tasks: xorg.yml
-# 
-# - include_tasks: suckless-dwm.yml
-# - include_tasks: suckless-dmenu.yml
-# - include_tasks: suckless-st.yml
+- include_tasks: xorg.yml
+
+- include_tasks: suckless-dwm.yml
+- include_tasks: suckless-dmenu.yml
+- include_tasks: suckless-st.yml
 - include_tasks: suckless-tabbed.yml

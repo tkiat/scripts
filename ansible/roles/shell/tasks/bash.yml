@@ -1,5 +1,5 @@
-- name: obs -> install
+- name: bash -> install
   become: true
   package:
-    name: obs
+    name: bash
     state: latest

@@ -28,7 +28,7 @@
 
 - name: xorg -> create ~/.xinitrc with predefined content if not exist
   copy:
-    src: "{{ dotfiles_dir }}/.xinitrc"
+    src: "{{ git_dir }}/dotfiles/.xinitrc"
     dest: "{{ ansible_env.HOME }}"
     force: no
 

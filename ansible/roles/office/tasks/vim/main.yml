@@ -6,7 +6,7 @@
 
 - name: vim -> create ~/.vimrc with predefined content if not exist
   copy:
-    src: "{{ dotfiles_dir }}/.vimrc"
+    src: "{{ git_dir }}/dotfiles/.vimrc"
     dest: "{{ ansible_env.HOME }}"
     force: no
 
@@ -15,7 +15,7 @@
     name: shared
     tasks_from: copy-file
   with_items:
-    - { src: "{{ dotfiles_dir }}/.vim/colors/tkiatd.vim",
+    - { src: "{{ git_dir }}/dotfiles/.vim/colors/tkiatd.vim",
         dest: "{{ ansible_env.HOME }}/.vim/colors/tkiatd.vim"}
 
 - name: vim -> install gvim

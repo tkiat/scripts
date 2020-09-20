@@ -1,5 +1,0 @@
-- name: vlc -> install
-  become: true
-  package:
-    name: vlc
-    state: latest
