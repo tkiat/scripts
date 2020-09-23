@@ -21,6 +21,7 @@
     - make++
     - node
     - npm
+    - the_silver_searcher
   when: ansible_os_family == "FreeBSD"
 
 - name: install prerequisites (linux)
