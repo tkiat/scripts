@@ -7,6 +7,7 @@
   with_items:
     - curl
     - gcc
+    - nodejs
     - python3
 
 - name: install prerequisites (freebsd)
@@ -33,8 +34,9 @@
     - make
   when: ansible_os_family != "FreeBSD"
 
-- include_tasks: nodejs-nvm.yml
-  when: ansible_os_family != "FreeBSD"
+# not work in some os build
+#- include_tasks: nodejs-nvm.yml
+#  when: ansible_os_family != "FreeBSD"
 
 - name: install utilities
   become: yes

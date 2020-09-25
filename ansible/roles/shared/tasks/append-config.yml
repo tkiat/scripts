@@ -1,3 +1,9 @@
+- name: append config file -> ensure {{ item.path }} exists
+  copy:
+    content: ""
+    dest: "{{ item.path }}"
+    force: no
+
 - name: append config file -> define config marker
   set_fact:
     config_marker_begin: "{{ (item.name  + ' =======================================')[:40] }}"

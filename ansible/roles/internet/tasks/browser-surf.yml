@@ -28,6 +28,17 @@
 #     chdir: "{{ git_dir }}/suckless-surf"
 #   when: ansible_os_family == "FreeBSD"
 
+#- name: surf -> install required dependencies (void)
+#  become: true
+#  package:
+#    name: "{{ item }}"
+#    state: latest
+#  with_items:
+#    - gcr
+#    - gcr-devel
+#    - webkit2gtk
+#  when: ansible_os_family == "void"
+
 - name: surf -> compile (linux)
   become: yes
   make:

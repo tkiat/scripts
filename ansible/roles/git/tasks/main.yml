@@ -67,12 +67,6 @@
     tasks_from: git-clone
   with_items:
     # github
-    - { dest_dir: "{{ git_dir }}/assets",
-        http: "https://github.com/tkiatd/assets.git",
-        ssh: "git@github.com:tkiatd/assets.git" }
-    - { dest_dir: "{{ git_dir }}/blog-content",
-        http: "https://github.com/tkiatd/blog-content.git",
-        ssh: "git@github.com:tkiatd/blog-content.git" }
     - { dest_dir: "{{ git_dir }}/lazyman-pomodoro",
         http: "https://github.com/tkiatd/lazyman-pomodoro.git",
         ssh: "git@github.com:tkiatd/lazyman-pomodoro.git" }
@@ -86,9 +80,16 @@
         http: "https://github.com/tkiatd/toy-projects.git",
         ssh: "git@github.com:tkiatd/toy-projects.git" }
     # gitlab
+    - { dest_dir: "{{ git_dir }}/assets",
+        http: "https://gitlab.com/tkiatd/assets.git",
+        ssh: "git@gitlab.com:tkiatd/assets.git" }
     - { dest_dir: "{{ git_dir }}/code-snippets",
         http: "https://gitlab.com/tkiatd/code-snippets.git",
         ssh: "git@gitlab.com:tkiatd/code-snippets.git" }
     - { dest_dir: "{{ git_dir }}/learning",
         http: "https://gitlab.com/tkiatd/learning.git",
         ssh: "git@gitlab.com:tkiatd/learning.git" }
+    # aws codecommit
+    - { dest_dir: "{{ git_dir }}/blog-content",
+        http: "https://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/blog-content",
+        ssh: "ssh://git-codecommit.ap-southeast-1.amazonaws.com/v1/repos/blog-content" }

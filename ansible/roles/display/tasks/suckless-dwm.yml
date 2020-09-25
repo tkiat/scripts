@@ -14,7 +14,7 @@
   args:
     chdir: "{{ git_dir }}/suckless-dwm"
   when: ansible_os_family == "FreeBSD"
-          
+
 - name: dwm -> compile (linux)
   become: yes
   make:

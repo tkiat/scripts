@@ -8,6 +8,15 @@
         ssh: "git@gitlab.com:tkiatd/suckless-st.git",
         branch: "my-config"}
 
+- name: st -> install related libraries (void linux)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - pkg-config
+  when: ansible_os_family == "void"
+
 - name: st -> install related libraries (freebsd)
   become: true
   package:

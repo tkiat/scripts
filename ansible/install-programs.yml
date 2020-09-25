@@ -5,10 +5,11 @@
   vars:
     git_dir: "/mnt/Shared/Git"
   roles:
-    - shell
-    - git
-    - prerequisites
-    - language
-    - display
-    - internet
-    - office
+#     - git
+#     - shell
+#     - prerequisites
+#     - language
+#     - display
+    - audio
+#     - internet
+#     - office

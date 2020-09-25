@@ -25,6 +25,19 @@
   register: result
   changed_when: not result.stderr is search("already installed")
 
+- name: nodejs -> create .nvmrc
+  include_role:
+    name: shared
+    tasks_from: append-config
+  vars:
+    content: |
+      lts/*
+  with_items:
+    - { name: "from ansible",
+        line_comment_char: "#",
+        path: "{{ ansible_env.HOME }}/.nvmrc",
+        content: "{{ content }}"}
+
 - name: nodejs -> source nvm
   shell: . {{ ansible_env.HOME }}/.nvm/nvm.sh
   changed_when: false
