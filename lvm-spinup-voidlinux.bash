@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# create another void linux lv and swap lv from existing lvm volumne group
+# create a new logical volume containing void linux
 # root password: voidlinux
 disk="/dev/sda"
 disk_part="/dev/sda1"
@@ -8,14 +8,11 @@ filesystem=xfs
 hostname=vaio-linux-void
 lv_name=void_glibc
 lv_size=20G
-lv_swap_name=swap
-lv_swap_size=8G
 vg_name=tkiatd
 
 mnt_dir="/mnt/$vg_name-$lv_name-temp"
 
 sudo lvcreate --name $lv_name -L $lv_size $vg_name
-sudo lvcreate --name $lv_swap_name -L $lv_swap_size $vg_name
 
 eval sudo "mkfs.$filesystem" -L $lv_name "/dev/$vg_name/$lv_name"
 sudo mkdir -p $mnt_dir
@@ -46,7 +43,6 @@ xbps-reconfigure -f glibc-locales
 echo "# <file system>             <dir> <type>      <options>             <dump>  <pass>" >  /etc/fstab
 echo "tmpfs                       /tmp  tmpfs       defaults,nosuid,nodev 0       0"      >> /etc/fstab
 echo "/dev/$vg_name/$lv_name      /     $filesystem defaults              0       0"      >> /etc/fstab
-echo "/dev/$vg_name/$lv_swap_name swap  swap        defaults              0       0"      >> /etc/fstab
 
 sed -i 's/GRUB_CMDLINE_LINUX_DEFAULT="[^"]*/& rd.lvm.vg=$vg_name rd.luks.uuid=$(blkid $disk_part -o value -s UUID)/' /etc/default/grub
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
