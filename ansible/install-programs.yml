@@ -1,15 +1,16 @@
 ---
-- name: execute playbook.yml
+- name: execute playbook
   hosts: localhost
   remote_user: tkiatd
   vars:
     git_dir: "/mnt/Shared/Git"
   roles:
-#     - git
-#     - shell
-#     - prerequisites
-#     - language
+    - git
+    - shell
+    - prerequisites
+    - language
     - display
-#     - audio
-#     - internet
-#     - office
+    - audio
+    - office
+
+    # - internet

@@ -7,5 +7,3 @@
 - include_tasks: "vim/plugin/vim-go.yml"
 - include_tasks: "vim/plugin/vim-terraform.yml"
 - include_tasks: "vim/plugin/vimcompletesme.yml"
-
-#- include_tasks: "libreoffice.yml"

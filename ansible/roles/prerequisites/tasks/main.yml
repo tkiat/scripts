@@ -8,6 +8,7 @@
     - curl
     - gcc
     - nodejs
+    - npm # archlinux requires
     - python3
 
 - name: install prerequisites (freebsd)

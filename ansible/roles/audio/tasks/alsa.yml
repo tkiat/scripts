@@ -1,4 +1,4 @@
-- name: alsa -> install alsa-util
+- name: alsa -> install alsa-utils
   become: true
   package:
     name: alsa-utils

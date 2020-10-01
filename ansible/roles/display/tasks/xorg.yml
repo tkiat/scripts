@@ -15,6 +15,18 @@
     - libXinerama
   when: ansible_os_family == "FreeBSD"
 
+- name: xorg -> install related libraries (arch linux)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - libxft
+    - libx11
+    - libxinerama
+    - xorg-xinit
+  when: ansible_os_family == "Archlinux"
+
 - name: xorg -> install related libraries (void linux)
   become: true
   package:

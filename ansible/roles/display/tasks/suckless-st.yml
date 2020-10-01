@@ -8,14 +8,14 @@
         ssh: "git@gitlab.com:tkiatd/suckless-st.git",
         branch: "my-config"}
 
-- name: st -> install related libraries (void linux)
+- name: st -> install related libraries (linux)
   become: true
   package:
     name: "{{ item }}"
     state: latest
   with_items:
     - pkg-config
-  when: ansible_os_family == "void"
+  when: ansible_os_family != "FreeBSD"
 
 - name: st -> install related libraries (freebsd)
   become: true
@@ -27,16 +27,16 @@
     - pkgconf
   when: ansible_os_family == "FreeBSD"
 
-- name: st -> compile (freebsd)
-  become: yes
-  command: gmake install clean
-  args:
-    chdir: "{{ git_dir }}/suckless-st"
-  when: ansible_os_family == "FreeBSD"
-
 - name: st -> compile (linux)
   become: yes
   make:
     chdir: "{{ git_dir }}/suckless-st"
     target: install
   when: ansible_os_family != "FreeBSD"
+
+- name: st -> compile (freebsd)
+  become: yes
+  command: gmake install clean
+  args:
+    chdir: "{{ git_dir }}/suckless-st"
+  when: ansible_os_family == "FreeBSD"

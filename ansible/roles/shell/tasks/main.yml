@@ -5,3 +5,4 @@
 
 # shell utilities
 - include_tasks: fzf.yml
+- include_tasks: neofetch.yml

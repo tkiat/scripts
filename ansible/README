@@ -1,5 +1,5 @@
 Test
 ansible all -i hosts.yml -m ping
 
-Usage
+Usage Examples
 ansible-playbook -i hosts.yml playbook/programs.yml --extra-vars "hosts=localhost" --tags "all" -K
