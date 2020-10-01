@@ -35,6 +35,15 @@
     - make
   when: ansible_os_family != "FreeBSD"
 
+- name: install prerequisites (Arch Linux)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - openssh
+  when: ansible_os_family == "Archlinux"
+
 # not work in some os build
 #- include_tasks: nodejs-nvm.yml
 #  when: ansible_os_family != "FreeBSD"
