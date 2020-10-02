@@ -41,6 +41,7 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - gnu-free-fonts
     - openssh
   when: ansible_os_family == "Archlinux"
 
@@ -82,3 +83,12 @@
     - tldr
     - xz
   when: ansible_os_family != "FreeBSD"
+
+- name: install utilities (Void Linux)
+  become: yes
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - Fonts-TLWG
+  when: ansible_os_family == "void"
