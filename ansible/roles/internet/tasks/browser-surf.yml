@@ -28,16 +28,26 @@
 #     chdir: "{{ git_dir }}/suckless-surf"
 #   when: ansible_os_family == "FreeBSD"
 
-#- name: surf -> install required dependencies (void)
-#  become: true
-#  package:
-#    name: "{{ item }}"
-#    state: latest
-#  with_items:
-#    - gcr
-#    - gcr-devel
-#    - webkit2gtk
-#  when: ansible_os_family == "void"
+- name: surf -> install required dependencies (void)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcr
+    - gcr-devel
+    - webkit2gtk
+    - webkit2gtk-devel
+  when: ansible_os_family == "void"
+
+- name: surf -> install required dependencies (Arch linux)
+  become: true
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - gcr
+  when: ansible_os_family == "Archlinux"
 
 - name: surf -> compile (linux)
   become: yes
@@ -45,3 +55,8 @@
     chdir: "{{ git_dir }}/suckless-surf"
     target: install
   when: ansible_os_family != "FreeBSD"
+
+- name: surf -> ensure ~/tmp exists
+  file:
+    path: "{{ ansible_env.HOME }}/tmp"
+    state: directory

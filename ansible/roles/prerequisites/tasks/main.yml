@@ -33,6 +33,7 @@
     state: latest
   with_items:
     - make
+    - the_silver_searcher
   when: ansible_os_family != "FreeBSD"
 
 - name: install prerequisites (Arch Linux)
@@ -84,11 +85,11 @@
     - xz
   when: ansible_os_family != "FreeBSD"
 
-- name: install utilities (Void Linux)
+- name: install utilities (Arch Linux)
   become: yes
   package:
     name: "{{ item }}"
     state: latest
   with_items:
     - Fonts-TLWG
-  when: ansible_os_family == "void"
+  when: ansible_os_family == "Archlinux"
