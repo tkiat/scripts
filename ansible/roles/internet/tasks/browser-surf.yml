@@ -8,26 +8,6 @@
         ssh: "git@gitlab.com:tkiatd/suckless-surf.git",
         branch: "my-config"}
 
-# surf browser doesn't seem to work smoothly to me in freebsd so I'd rather skip it
-
-# - name: surf -> install required dependencies (freebsd)
-#   become: true
-#   package:
-#     name: "{{ item }}"
-#     state: latest
-#   with_items:
-#     - make++
-#     - gcr
-#     - webkit2-gtk3
-#   when: ansible_os_family == "FreeBSD"
-# 
-# - name: surf -> compile (freebsd)
-#   become: yes
-#   command: makepp install clean
-#   args:
-#     chdir: "{{ git_dir }}/suckless-surf"
-#   when: ansible_os_family == "FreeBSD"
-
 - name: surf -> install required dependencies (void)
   become: true
   package:
@@ -60,3 +40,24 @@
   file:
     path: "{{ ansible_env.HOME }}/tmp"
     state: directory
+
+# surf browser doesn't seem to work smoothly to me in freebsd so I'd rather skip it
+
+# - name: surf -> install required dependencies (freebsd)
+#   become: true
+#   package:
+#     name: "{{ item }}"
+#     state: latest
+#   with_items:
+#     - make++
+#     - gcr
+#     - webkit2-gtk3
+#   when: ansible_os_family == "FreeBSD"
+# 
+# - name: surf -> compile (freebsd)
+#   become: yes
+#   command: makepp install clean
+#   args:
+#     chdir: "{{ git_dir }}/suckless-surf"
+#   when: ansible_os_family == "FreeBSD"
+

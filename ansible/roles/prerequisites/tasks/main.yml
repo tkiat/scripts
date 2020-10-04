@@ -8,7 +8,6 @@
     - curl
     - gcc
     - nodejs
-    - npm # archlinux requires
     - python3
 
 - name: install prerequisites (freebsd)
@@ -43,6 +42,7 @@
     state: latest
   with_items:
     - gnu-free-fonts
+    - npm
     - openssh
   when: ansible_os_family == "Archlinux"
 
