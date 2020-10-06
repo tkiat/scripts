@@ -3,7 +3,7 @@
   hosts: localhost
   remote_user: tkiatd
   vars:
-    git_dir: "/mnt/Shared/Git"
+    git_dir: "/mnt/shared/Git"
   roles:
     - git
     - shell

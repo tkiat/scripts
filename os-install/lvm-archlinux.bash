@@ -51,7 +51,7 @@ hwclock --systohc
 echo -e 'en_US.UTF-8 UTF-8'"\n\$(cat /etc/locale.gen)" > /etc/locale.gen
 locale-gen
 
-sed -i 's#GRUB_CMDLINE_LINUX_DEFAULT="[^"]*#& cryptdevice=UUID=$(blkid $disk_part -o value -s UUID):luks:allow-discards cryptkey=/:/boot/volume.key#' /etc/default/grub
+sed -i 's#GRUB_CMDLINE_LINUX_DEFAULT="[^"]*#& cryptdevice=UUID=$(sudo blkid $disk_part -o value -s UUID):luks:allow-discards cryptkey=/:/boot/volume.key#' /etc/default/grub
 echo "GRUB_ENABLE_CRYPTODISK=y" >> /etc/default/grub
 echo "$hostname $disk_part /boot/volume.key   luks" >> /etc/crypttab
 

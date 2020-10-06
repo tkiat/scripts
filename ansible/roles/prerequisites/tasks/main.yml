@@ -6,6 +6,7 @@
     state: latest
   with_items:
     - curl
+    - ffmpeg
     - gcc
     - nodejs
     - python3
@@ -80,16 +81,8 @@
     name: "{{ item }}"
     state: latest
   with_items:
+    - Fonts-TLWG # arch and void
     - gparted
     - tldr
     - xz
   when: ansible_os_family != "FreeBSD"
-
-- name: install utilities (Arch Linux)
-  become: yes
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - Fonts-TLWG
-  when: ansible_os_family == "Archlinux"

@@ -1,8 +1,0 @@
----
-- name: media -> install
-  become: yes
-  package:
-    name: "{{ item }}"
-    state: latest
-  with_items:
-    - vlc
