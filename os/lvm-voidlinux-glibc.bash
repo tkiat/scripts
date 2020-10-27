@@ -15,14 +15,7 @@ url_fallback="https://alpha.de.repo.voidlinux.org/live/current/void-x86_64-ROOTF
 
 mnt_dir="/mnt/$(echo $lv_name | sed 's/_/-/g')"
 # installation -------------------------------------
-echo -n "Enter root password for a new os: " && read -s root_pwd
-echo -ne "\nCreating a non-privileged user. Enter username: " && read user_name
-echo -n "Enter his/her password: " && read -s user_pwd
-
-echo -ne "\nEnter WiFi SSID: " && read wifi_ssid
-echo -n "Enter WiFi Password: " && read -s wifi_pwd
-
-echo -n "Enter disk encryption password: " && read -s encrypt_pwd
+echo -ne "\nEnter disk encryption password: " && read -s encrypt_pwd
 # wipe disk and create 1 primary partition then encrypt it
 if [ "$overwrite_disk" = true ]; then
 	sudo dd if=/dev/zero of=$disk bs=8M count=4
@@ -108,6 +101,12 @@ xbps-reconfigure -fa
 EOF
 
 # perform post-installation
+echo -n "Enter root password for a new os: " && read -s root_pwd
+echo -ne "\nCreating a non-privileged user. Enter username: " && read user_name
+echo -n "Enter his/her password: " && read -s user_pwd
+
+echo -ne "\nEnter WiFi SSID: " && read wifi_ssid
+echo -n "Enter WiFi Password: " && read -s wifi_pwd
 
 hostname=$(echo $lv_name | sed 's/_/-/g')
 # chroot and configure

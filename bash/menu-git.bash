@@ -3,11 +3,12 @@ script_path="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 helper_script=$script_path"/helper"
 # insertion order matters here
 declare -a options; declare -a commands
-options+=('git add .'); commands+=('git add .')
+options+=('git add -A'); commands+=('git add -A')
 options+=('git commit -m <message>'); commands+=('read -p "Enter commit message: " msg; git commit -m "$msg"')
-options+=('git push origin master'); commands+=('git push origin master')
+options+=('git push origin $(git branch --show-current)'); commands+=('git push origin $(git branch --show-current)')
 options+=('git status'); commands+=('git status')
-options+=('git remote add <alias> <url>'); commands+=('read -p "Hint \"<alias> git@<source>:<username>/<repo>.git\": " repo; git remote add "$repo"')
+options+=('git log --date=iso-strict --pretty=format:"%h %ad %s"'); commands+=('git log --date=iso-strict --pretty=format:"%h %ad %s"')
+# options+=('git remote add <alias> <url>'); commands+=('read -p "Hint \"<alias> git@<source>:<username>/<repo>.git\": " repo; git remote add "$repo"')
 #options+=('BitBucket API v2'); commands+=('source $helper_script/helper-menu-bitbucketapi_v2.sh')
 #options+=('GitHub API v3'); commands+=('source $helper_script/helper-menu-githubapi_v3.sh')
 #options+=('GitLab API v4'); commands+=('source $helper_script/helper-menu-gitlabapi_v4.sh')
