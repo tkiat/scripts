@@ -13,10 +13,10 @@
               (method git-fetch)
               (uri (git-reference
                     (url "https://gitlab.com/tkiatd/suckless-slock.git")
-                    (commit "739a505848c8da29dae56f74ec279e0841268668")))
+                    (commit "07a907f67c2b5c5c7165fcb1ddfc174d1fa72e54")))
               (sha256
                (base32
-                "0iwk2vmq8kl64lzra6zgaxrwc8rrlmqjyzg4h29zb4pgxkb57akv"))))
+                "1975lw2hjdikzz0jp8ajzi0aa952dk3jc4vpv262yf6hljx71izh"))))
     (build-system gnu-build-system)
     (arguments
      `(#:tests? #f                      ; no tests
