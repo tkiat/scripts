@@ -89,14 +89,14 @@ for file in files:
 	os.rename(file, re.sub("([a-zA-Z]+)", lambda m: m.group(0) if m.group(0) in exceptions else m.group(0).capitalize(), file_no_ext) + ext)
 ''']
 
-options += ['Word -- Remove first match']
-commands += ['''
-word = read_str("Enter word: ")
-for file in files:
-	if file == os.path.basename(__file__):
-		continue
-	os.rename(file, file.replace(word, "", 1))
-''']
+# options += ['Word -- Remove first match']
+# commands += ['''
+# word = read_str("Enter word: ")
+# for file in files:
+# 	if file == os.path.basename(__file__):
+# 		continue
+# 	os.rename(file, file.replace(word, "", 1))
+# ''']
 
 options += ['Word -- Replace words up to n matches']
 commands += ['''

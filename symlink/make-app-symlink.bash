@@ -10,12 +10,12 @@ sudo ln -sf $gui_dir/bitwarden/Bitwarden-1.22.2-x86_64.AppImage $dest_dir/bitwar
 sudo ln -sf $gui_dir/calibre/calibre $dest_dir/calibre
 sudo ln -sf $gui_dir/chrome/chrome $dest_dir/chrome
 sudo ln -sf $gui_dir/chromium/chrome $dest_dir/chromium
-sudo ln -sf $gui_dir/firefox-beta/firefox $dest_dir/firefox-beta
+# sudo ln -sf $gui_dir/firefox-beta/firefox $dest_dir/firefox-beta
 sudo ln -sf $gui_dir/firefox-dev/firefox $dest_dir/firefox-dev
-sudo ln -sf $gui_dir/firefox-nightly/firefox $dest_dir/firefox-nightly
+# sudo ln -sf $gui_dir/firefox-nightly/firefox $dest_dir/firefox-nightly
 sudo ln -sf $gui_dir/firefox-quantum/firefox $dest_dir/firefox-quantum
 sudo ln -sf $gui_dir/freefilesync/FreeFileSync $dest_dir/freefilesync
-sudo ln -sf $gui_dir/icecat/icecat $dest_dir/icecat
+# sudo ln -sf $gui_dir/icecat/icecat $dest_dir/icecat
 sudo ln -sf $gui_dir/krita/krita-4.3.0-x86_64.appimage $dest_dir/krita
 sudo ln -sf $gui_dir/libreoffice/x86_64-full-fresh.AppImage $dest_dir/libreoffice
 sudo ln -sf $gui_dir/opera/opera $dest_dir/opera
