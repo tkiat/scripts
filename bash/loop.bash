@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
-for i in {1..4}
+for filename in *.pdf
+# for filename in *
+# for i in {0..6}
 do
-gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=temp "Chapter-$i.pdf" && mv temp "Chapter-$i.pdf"
+# filename="noob-$i.jpg"
+# convert $filename -strip -interlace Plane -gaussian-blur 0.05 -quality 10% temp && mv temp $filename
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH -sOutputFile=temp $filename && mv temp $filename
 done
