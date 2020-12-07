@@ -12,9 +12,11 @@ dotfiles_dir=~/Git/dotfiles/dotfiles
 [ ! -f ~/.vim/colors/tkiat.vim ] && ln -s $dotfiles_dir/.vim/colors/tkiat.vim ~/.vim/colors/tkiat.vim
 
 [ ! -d ~/.vim/template ] && mkdir -p ~/.vim/template
+for file in $dotfiles_dir/.vim/template/*; do [ ! -f ~/.vim/template/$(basename $file) ] && ln -s $file ~/.vim/template/$(basename $file); done
 # .zshenv
 [ ! -f ~/.zshenv ] && ln -s $dotfiles_dir/.zshenv.shared ~/.zshenv.shared
 [ ! -f ~/.zshenv ] && echo "source ~/.zshenv.shared" > ~/.zshenv
 # .zshrc
 [ ! -f ~/.zshrc ] && ln -s $dotfiles_dir/.zshrc.shared ~/.zshrc.shared
 [ ! -f ~/.zshrc ] && echo "source ~/.zshrc.shared" > ~/.zshrc
+
