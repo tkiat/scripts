@@ -19,6 +19,7 @@ guix install \
 # file
 guix install \
 	mc \
+	ntfs-3g \
 	ranger \
 	thunar \
 	tree \

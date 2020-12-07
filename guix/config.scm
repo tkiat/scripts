@@ -2,11 +2,11 @@
 ;; for a "desktop" setup with GNOME and Xfce where the
 ;; root partition is encrypted with LUKS.
 
-(use-modules (gnu) (gnu system nss) (srfi srfi-1) 
-       (tkiat packages tkiat-dmenu)
-       (tkiat packages tkiat-dwm)
-       (tkiat packages tkiat-slock)
-       (tkiat packages tkiat-st))
+(use-modules (gnu) (gnu system nss) (srfi srfi-1)
+             (tkiat packages tkiat-dmenu)
+             (tkiat packages tkiat-dwm)
+             (tkiat packages tkiat-slock)
+             (tkiat packages tkiat-st))
 (use-service-modules base desktop networking sound ssh xorg)
 (use-package-modules certs gnome linux shells suckless)
 
@@ -15,13 +15,12 @@
   (timezone "Asia/Bangkok")
   (locale "en_US.utf8")
   (kernel linux-libre)
-  (keyboard-layout (keyboard-layout "us" "altgr-intl")) ;; "altgr-intl" provides dead keys for accented characters.
+  (keyboard-layout (keyboard-layout "us" "altgr-intl"))
 
   (bootloader (bootloader-configuration
                 (bootloader grub-bootloader)
                 (target "/dev/sda")
                 (keyboard-layout keyboard-layout)))
-
 
   (file-systems (append
                  (list (file-system
@@ -29,6 +28,9 @@
                          (mount-point "/")
                          (type "ext4")))
                  %base-file-systems))
+
+  (firmware %base-firmware)
+
   (swap-devices '("/dev/sda2"))
 
   (users (cons (user-account
