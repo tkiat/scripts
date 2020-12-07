@@ -6,22 +6,26 @@ guix install \
 	node \
 	python \
 
-# essential
+# general (net-tools for ifconfig)
 guix install \
 	curl \
+	file \
 	git \
 	gnupg \
 	neofetch \
+	net-tools \
 	redshift \
 	wget \
 	zsh \
 
-# file
+# file & browser (tumbler to enable preview in thunar)
 guix install \
 	mc \
 	ntfs-3g \
+	qutebrowser \
 	ranger \
 	thunar \
+	tumbler \
 	tree \
 
 # game

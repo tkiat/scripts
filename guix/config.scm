@@ -56,15 +56,17 @@
                                    (openssh-configuration
                                      (x11-forwarding? #t)
                                      (permit-root-login 'without-password)))
+                          ;;; (service static-networking-service-type)
                           (service dhcp-client-service-type))
         (remove (lambda (service)
             (member (service-kind service) (list network-manager-service-type
                    pulseaudio-service-type
                    wpa-supplicant-service-type)))
-        (modify-services %desktop-services
-          (alsa-service-type config =>
-            (alsa-configuration
-              (pulseaudio? #f)))))))
+            %desktop-services)))
+;;;         (modify-services %desktop-services
+;;;           (alsa-service-type config =>
+;;;             (alsa-configuration
+;;;               (pulseaudio? #f)))))))
   ;;(remove (lambda (x) (member x '(a b c))) '(a b d))
 
   (name-service-switch %mdns-host-lookup-nss)) ;; Allow resolution of '.local' host names with mDNS.
