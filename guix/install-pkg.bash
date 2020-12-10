@@ -14,6 +14,7 @@ guix install \
 	gnupg \
 	neofetch \
 	net-tools \
+	pv \
 	redshift \
 	wget \
 	zsh \

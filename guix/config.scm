@@ -60,13 +60,16 @@
                           (service dhcp-client-service-type))
         (remove (lambda (service)
             (member (service-kind service) (list network-manager-service-type
-                   pulseaudio-service-type
-                   wpa-supplicant-service-type)))
-            %desktop-services)))
+                  pulseaudio-service-type
+                  wpa-supplicant-service-type)))
+                %desktop-services)))
+;;;             (modify-services %desktop-services
+;;;               (network-manager-service-type config =>
+;;;                 (network-manager-configuration
+;;;                   (dns "dnsmasq")))))))
 ;;;         (modify-services %desktop-services
 ;;;           (alsa-service-type config =>
 ;;;             (alsa-configuration
 ;;;               (pulseaudio? #f)))))))
   ;;(remove (lambda (x) (member x '(a b c))) '(a b d))
-
   (name-service-switch %mdns-host-lookup-nss)) ;; Allow resolution of '.local' host names with mDNS.
