@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 dotfiles_dir=~/Git/dotfiles/dotfiles
 # .asoundrc
 # [ ! -f ~/.asoundrc ] && ln -s $dotfiles_dir/.asoundrc ~/.asoundrc
