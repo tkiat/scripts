@@ -25,6 +25,7 @@ guix install \
 	ntfs-3g \
 	qutebrowser \
 	ranger \
+	rsync \
 	thunar \
 	tumbler \
 	tree \
@@ -38,12 +39,15 @@ guix install \
 # multimedia
 guix install \
 	cmus \
+	jpegoptim \
+	pngquant \
 	scrot \
 	vlc \
 
 # office
 guix install \
 	feh \
+	ghostscript \
 	vim-full \
 	xpdf \
 
