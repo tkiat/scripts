@@ -41,6 +41,7 @@ do
 		echo "optimizing $filename ..."
 		gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=temp $filename && mv temp $filename
 	fi
+
 	# png
 	if [[ $filename =~ .*\.png ]]
 	then
