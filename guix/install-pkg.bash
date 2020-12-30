@@ -8,12 +8,15 @@ guix install \
 
 # general (net-tools for ifconfig)
 guix install \
+	acpi \
 	curl \
 	file \
 	git \
 	gnupg \
+	htop \
 	neofetch \
 	net-tools \
+	password-store \
 	pv \
 	redshift \
 	wget \
