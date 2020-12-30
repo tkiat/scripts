@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-for filename in *
+for filename in $@
 do
 	# epub
 	if [[ $filename =~ .*\.(epub|cbz) ]]
@@ -18,7 +18,7 @@ do
 			if [[ $subfilename =~ .*\.(jpg|jpeg) ]]
 			then
 				echo "optimizing $subfilename ..."
-				jpegoptim --size=50k -q $subfilename
+				jpegoptim --size=250k -q $subfilename
 			fi
 		done
 
@@ -32,7 +32,15 @@ do
 	if [[ $filename =~ .*\.(jpg|jpeg) ]]
 	then
 		echo "optimizing $filename ..."
-		jpegoptim --size=50k -q $filename
+		jpegoptim --size=250k -q $filename
+	fi
+
+	# video
+	if [[ $filename =~ .*\.(avi|mp4|mov|mpg) ]]
+	then
+		echo "optimizing $filename ..."
+		tempname="$(dirname $filename)/temp$(basename $filename)"
+		ffmpeg -i $filename -crf 30 $tempname && mv $tempname $filename
 	fi
 
 	# pdf

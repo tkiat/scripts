@@ -30,12 +30,6 @@ guix install \
 	tumbler \
 	tree \
 
-# game
-guix install \
-	supertux \
-	crawl \
-	crawl-tiles \
-
 # multimedia
 guix install \
 	cmus \
