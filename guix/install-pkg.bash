@@ -9,6 +9,7 @@ guix install \
 # general (net-tools for ifconfig)
 guix install \
 	acpi \
+	adb \
 	curl \
 	file \
 	git \
@@ -17,6 +18,7 @@ guix install \
 	neofetch \
 	net-tools \
 	password-store \
+	pinentry \
 	pv \
 	redshift \
 	wget \
@@ -25,6 +27,7 @@ guix install \
 # file & browser (tumbler to enable preview in thunar)
 guix install \
 	mc \
+	icecat \
 	ntfs-3g \
 	qutebrowser \
 	ranger \
@@ -46,8 +49,9 @@ guix install \
 	feh \
 	ghostscript \
 	vim-full \
-	xpdf \
 
 # xorg
 guix install \
+	xpdf \
+	xprop \
 	setxkbmap \
