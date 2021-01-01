@@ -21,6 +21,7 @@ guix install \
 	pinentry \
 	pv \
 	redshift \
+	unzip \
 	wget \
 	zsh \
 
@@ -54,4 +55,6 @@ guix install \
 guix install \
 	xpdf \
 	xprop \
+	xrandr \
+	xsetroot \
 	setxkbmap \
