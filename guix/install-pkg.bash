@@ -11,6 +11,7 @@ guix install \
 	acpi \
 	adb \
 	curl \
+	cryptsetup \
 	file \
 	git \
 	gnupg \
@@ -53,8 +54,9 @@ guix install \
 
 # xorg
 guix install \
+	setxkbmap \
+	xclip \
 	xpdf \
 	xprop \
 	xrandr \
 	xsetroot \
-	setxkbmap \
