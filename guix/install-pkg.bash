@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # coding
 guix install \
-	font-gnu-freefont \
+	cloc \
 	guile \
 	node \
 	python \
@@ -10,19 +10,23 @@ guix install \
 guix install \
 	acpi \
 	adb \
-	curl \
+	alsa-utils \
+	cpufrequtils \
 	cryptsetup \
+	curl \
 	file \
+	font-gnu-freefont \
 	git \
 	gnupg \
 	htop \
+	lm-sensors \
+	lsof \
 	neofetch \
 	net-tools \
 	password-store \
 	pinentry \
 	pv \
 	redshift \
-	unzip \
 	wget \
 	zsh \
 
@@ -37,6 +41,9 @@ guix install \
 	thunar \
 	tumbler \
 	tree \
+	unison \
+	unzip \
+	zip \
 
 # multimedia
 guix install \
@@ -51,6 +58,12 @@ guix install \
 	feh \
 	ghostscript \
 	vim-full \
+
+# vpn
+guix install \
+	network-manager-openvpn \
+	openresolv \
+	openvpn \
 
 # xorg
 guix install \

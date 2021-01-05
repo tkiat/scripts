@@ -5,8 +5,7 @@ do
 	if [[ $filename =~ .*\.(epub|cbz) ]]
 	then
 		echo "optimizing $filename ..."
-
-		tempdir="$filename-temp"
+		tempdir=$(mktemp -d)
 		unzip -q $filename -d $tempdir
 		for subfilename in $(find .)
 		do
@@ -23,8 +22,9 @@ do
 		done
 
 		cd $tempdir
-		zip ../$filename -r *
+		zip $filename -r *
 		cd -
+		mv $tempdir/$filename .
 		rm -rf $tempdir
 	fi
 
@@ -39,7 +39,9 @@ do
 	if [[ $filename =~ .*\.(avi|mp4|mov|mpg) ]]
 	then
 		echo "optimizing $filename ..."
-		tempname="$(dirname $filename)/temp$(basename $filename)"
+		tempname=$(mktemp --suffix ".${filename##*.}")
+		rm $tempname
+		# tempname="$(dirname $filename)/temp$(basename $filename)"
 		ffmpeg -i $filename -crf 30 $tempname && mv $tempname $filename
 	fi
 
@@ -47,7 +49,8 @@ do
 	if [[ $filename =~ .*\.pdf ]]
 	then
 		echo "optimizing $filename ..."
-		gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=temp $filename && mv temp $filename
+		tempfile=$(mktemp)
+		gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$tempfile $filename && mv $tempfile $filename
 	fi
 
 	# png
