@@ -16,6 +16,10 @@ dotfiles_dir=~/Git/dotfiles/dotfiles
 [ ! -f ~/.asoundrc ] && ln -s $dotfiles_dir/.asoundrc ~
 # .gitconfig
 [ ! -f ~/.gitconfig ] && ln -s $dotfiles_dir/.gitconfig ~
+# .newsboat
+[ ! -d ~/.newsboat/ ] && mkdir ~/.newsboat
+[ ! -f ~/.newsboat/config ] && ln -s $dotfiles_dir/.newsboat/config ~/.newsboat/config
+[ ! -f ~/.newsboat/urls ] && ln -s $dotfiles_dir/.newsboat/urls ~/.newsboat/urls
 # .tmux.conf
 [ ! -f ~/.tmux.conf ] && ln -s $dotfiles_dir/.tmux.conf ~
 # .vim
@@ -31,6 +35,9 @@ dotfiles_dir=~/Git/dotfiles/dotfiles
 
 [ ! -d ~/.vim/template ] && mkdir -p ~/.vim/template
 for file in $dotfiles_dir/.vim/template/*; do [ ! -f ~/.vim/template/$(basename $file) ] && ln -s $file ~/.vim/template/$(basename $file); done
+# .w3m
+[ ! -d ~/.w3m ] && mkdir ~/.w3m
+[ ! -f ~/.w3m/keymap ] && ln -s $dotfiles_dir/.w3m/keymap ~/.w3m
 # .xpdfrc
 [ ! -f ~/.xpdfrc ] && ln -s $dotfiles_dir/.xpdfrc ~
 # .zshenv

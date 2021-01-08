@@ -7,6 +7,7 @@ do
 		echo "optimizing $filename ..."
 		tempdir=$(mktemp -d)
 		unzip -q $filename -d $tempdir
+		cd $tempdir
 		for subfilename in $(find .)
 		do
 			if [[ $subfilename =~ .*\.(png) ]]
@@ -17,11 +18,10 @@ do
 			if [[ $subfilename =~ .*\.(jpg|jpeg) ]]
 			then
 				echo "optimizing $subfilename ..."
-				jpegoptim --size=250k -q $subfilename
+				jpegoptim --size=150k -q $subfilename
 			fi
 		done
 
-		cd $tempdir
 		zip $filename -r *
 		cd -
 		mv $tempdir/$filename .
@@ -32,7 +32,7 @@ do
 	if [[ $filename =~ .*\.(jpg|jpeg) ]]
 	then
 		echo "optimizing $filename ..."
-		jpegoptim --size=250k -q $filename
+		jpegoptim --size=150k -q $filename
 	fi
 
 	# video

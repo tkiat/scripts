@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env dash
 # coding
 guix install \
 	cloc \
@@ -26,6 +26,7 @@ guix install \
 	password-store \
 	pinentry \
 	pv \
+	recutils \
 	redshift \
 	wget \
 	zsh \
@@ -64,6 +65,7 @@ guix install \
 	network-manager-openvpn \
 	openresolv \
 	openvpn \
+	protonvpn-cli \
 
 # xorg
 guix install \

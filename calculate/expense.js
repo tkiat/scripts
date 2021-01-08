@@ -22,8 +22,7 @@ fs.readFile(filename, (err, data) => {
 	console.table(output)
 	fs.writeFile(filename + '-summary', JSON.stringify(output, null, 2), function(err) {
 		if (err) {
-			return console.error(err);
+			return console.error(err)
 		}
 	})
 })
-
