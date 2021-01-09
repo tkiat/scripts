@@ -30,6 +30,7 @@ guix install \
 	recutils \
 	redshift \
 	wget \
+	xdg-utils \
 	zsh \
 
 # file & browser (tumbler to enable preview in thunar)

@@ -1,0 +1,3 @@
+#!/usr/bin/env dash
+[ ! -f ~/.config/guix/channels.scm ] && ln -sf ~/Git/dotfiles-and-configs/config/guix/channels.scm ~/.config/guix/ && echo "creating symlink ~/.config/guix/channels.scm"
+[ ! -f ~/.zshrc ] && ln -sf ~/Git/dotfiles-and-configs/dotfiles/.zshrc.guix ~/.zshrc && echo "creating symlink ~/.zshrc"
