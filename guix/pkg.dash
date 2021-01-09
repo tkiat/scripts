@@ -21,6 +21,7 @@ guix install \
 	htop \
 	lm-sensors \
 	lsof \
+	mediainfo \
 	neofetch \
 	net-tools \
 	password-store \
