@@ -11,9 +11,9 @@ options+=('Generate Password (alphanumeric) and copy to clipboard'); commands+=(
 read -p "Enter password length: " len ;
 < /dev/urandom tr -cd "A-Za-z0-9" | head -c $len | xclip -selection clipboard
 ')
-options+=('Generate Password (alphanumeric ! @ # $ % ^ & *) and copy to clipboard'); commands+=('
+options+=('Generate Password (alphanumeric ! @ # % ^ & *) and copy to clipboard'); commands+=('
 read -p "Enter password length: " len ;
-< /dev/urandom tr -cd "A-Za-z0-9\!\@\#\$%^&*" | head -c $len | xclip -selection clipboard
+< /dev/urandom tr -cd "A-Za-z0-9\!\@\#\%^&*" | head -c $len | xclip -selection clipboard
 ')
 options+=('Generate SSH Key Pair'); commands+=('
 read -p "Enter filename: " filename ;

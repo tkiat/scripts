@@ -15,6 +15,8 @@ private_dir=~/Git/private
 [ ! -d ~/.config/mc ] && mkdir -p ~/.config/mc
 [ ! -f ~/.config/mc/hotlist ] && ln -sf $dotfiles_dir/.config/mc/hotlist ~/.config/mc
 [ ! -f ~/.config/mc/mc.ext ] && ln -sf $dotfiles_dir/.config/mc/mc.ext ~/.config/mc
+# neomutt
+[ ! -d ~/.neomutt/ ] && ln -s $dotfiles_dir/.neomutt ~
 # newsboat
 [ ! -d ~/.newsboat/ ] && mkdir ~/.newsboat
 [ ! -f ~/.newsboat/config ] && ln -sf $dotfiles_dir/.newsboat/config ~/.newsboat/config
