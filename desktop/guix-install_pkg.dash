@@ -29,6 +29,7 @@ guix install \
 	pv \
 	recutils \
 	redshift \
+	weechat \
 	wget \
 	xdg-utils \
 	zsh \
