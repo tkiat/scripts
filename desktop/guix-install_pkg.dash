@@ -5,6 +5,7 @@ guix install \
 	guile \
 	node \
 	python \
+	shellcheck \
 
 # general (net-tools for ifconfig)
 guix install \

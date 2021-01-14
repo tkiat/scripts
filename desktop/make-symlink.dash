@@ -28,14 +28,14 @@ private_dir=~/Git/private
 [ ! -f ~/.tmux.conf ] && ln -sf $dotfiles_dir/.tmux.conf ~
 # vim
 [ ! -f ~/.vimrc.shared ] && ln -sf $dotfiles_dir/.vimrc.shared ~
-[ ! -f ~/.vimrc ] && echo 'source $HOME/.vimrc.shared"' > ~/.vimrc
+[ ! -f ~/.vimrc ] && echo "source $HOME/.vimrc.shared" > ~/.vimrc
 [ ! -d ~/.vim/backup ] && mkdir -p ~/.vim/backup
 [ ! -d ~/.vim/swap ] && mkdir -p ~/.vim/swap
 [ ! -d ~/.vim/undo ] && mkdir -p ~/.vim/undo
 [ ! -d ~/.vim/colors ] && mkdir -p ~/.vim/colors
 [ ! -f ~/.vim/colors/tkiat.vim ] && ln -sf $dotfiles_dir/.vim/colors/tkiat.vim ~/.vim/colors
 [ ! -d ~/.vim/template ] && mkdir -p ~/.vim/template
-for file in $dotfiles_dir/.vim/template/*; do [ ! -f ~/.vim/template/$(basename $file) ] && ln -sf $file ~/.vim/template/$(basename $file); done
+for file in "$dotfiles_dir"/.vim/template/*; do [ ! -f ~/.vim/template/"$(basename $file)" ] && ln -sf "$file" ~/.vim/template/"$(basename $file)"; done
 # w3m
 [ ! -d ~/.w3m ] && mkdir ~/.w3m
 [ ! -f ~/.w3m/keymap ] && ln -sf $dotfiles_dir/.w3m/keymap ~/.w3m
