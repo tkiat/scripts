@@ -23,7 +23,7 @@ def read_int(prompt, minimum=-math.inf, maximum=math.inf):
 # insertion order matters here
 options, commands = [], []
 
-options += ['File name -- Remove from index x to y']
+options += ['Characters -- Remove from index x to y']
 commands += ['''
 start = read_int("Enter start index: ", minimum=0)
 end = read_int("Enter end index: ", minimum=start)
@@ -31,16 +31,6 @@ for file in files:
   if file == os.path.basename(__file__):
     continue
   os.rename(file, file[:start] + file[end + 1:])
-''']
-
-options += ['Input text -- Add at specific index']
-commands += ['''
-index = read_int("Enter Index: ", minimum=0)
-text = read_str("Enter Text: ")
-for file in files:
-  if file == os.path.basename(__file__):
-    continue
-  os.rename(file, file[0:index] + text + file[index:])
 ''']
 
 options += ['Number -- Make first number x digits']
@@ -67,6 +57,16 @@ for file in files:
   file_no_ext = file if last_dot_index == -1 else file[0:last_dot_index]
   ext = "" if last_dot_index == -1 else file[last_dot_index:]
   os.rename(file, re.sub('(\-?\d+)', lambda m: str(int(m.group(0)) - int(x)), file_no_ext, 1) + ext)
+''']
+
+options += ['Text -- Add at specific index']
+commands += ['''
+index = read_int("Enter Index: ", minimum=0)
+text = read_str("Enter Text: ")
+for file in files:
+  if file == os.path.basename(__file__):
+    continue
+  os.rename(file, file[0:index] + text + file[index:])
 ''']
 
 options += ['Word -- Capitalize first letter of each word']
@@ -99,14 +99,15 @@ try:
     print('----------------------------------------')
     # files = [f for f in os.listdir(os.curdir) if os.path.isfile(f)] if fileOnly else os.listdir(os.curdir)
     files = [f for f in os.listdir(os.curdir) if not f.startswith('.')]
+    files = sorted(files)
     for file in files:
       n = 10
       split_strings = [file[index : index + n] for index in range(0, len(file), n)]
       print("|".join(split_strings))
       continue
-    print("0123456789|0123456789|0123456789|0123456789")
+    print("0123456789|0123456789|0123456789|0123456789 -> Index")
     print('========================================')
-    print('          ⭐⭐Rename Menu ⭐⭐          ')
+    print('         ⭐⭐ Rename Menu ⭐⭐          ')
     print('========================================')
     for index, option in enumerate(options + ["Quit"]):
       print(str(index + 1) + ") " + option)

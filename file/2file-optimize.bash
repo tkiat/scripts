@@ -1,38 +1,38 @@
 #!/usr/bin/env bash
-for filename in $@
+for filename in "$@"
 do
 	# epub
 	if [[ $filename =~ .*\.(epub|cbz) ]]
 	then
 		echo "optimizing $filename ..."
 		tempdir=$(mktemp -d)
-		unzip -q $filename -d $tempdir
-		cd $tempdir
+		unzip -q "$filename" -d "$tempdir"
+		cd "$tempdir" || exit
 		for subfilename in $(find .)
 		do
 			if [[ $subfilename =~ .*\.(png) ]]
 			then
 				echo "optimizing $subfilename ..."
-				pngquant -f --quality 0-10 $subfilename --output $subfilename
+				pngquant -f --quality 0-10 "$subfilename" --output "$subfilename"
 			fi
 			if [[ $subfilename =~ .*\.(jpg|jpeg) ]]
 			then
 				echo "optimizing $subfilename ..."
-				jpegoptim --size=150k -q $subfilename
+				jpegoptim --size=150k -q "$subfilename"
 			fi
 		done
 
-		zip $filename -r *
-		cd -
-		mv $tempdir/$filename .
-		rm -rf $tempdir
+		zip "$filename" -r ./*
+		cd - || exit
+		mv "$tempdir"/"$filename" .
+		rm -rf "$tempdir"
 	fi
 
 	# jpg
 	if [[ $filename =~ .*\.(jpg|jpeg) ]]
 	then
 		echo "optimizing $filename ..."
-		jpegoptim --size=150k -q $filename
+		jpegoptim --size=150k -q "$filename"
 	fi
 
 	# video
@@ -40,9 +40,8 @@ do
 	then
 		echo "optimizing $filename ..."
 		tempname=$(mktemp --suffix ".${filename##*.}")
-		rm $tempname
-		# tempname="$(dirname $filename)/temp$(basename $filename)"
-		ffmpeg -i $filename -crf 30 $tempname && mv $tempname $filename
+		rm "$tempname"
+		ffmpeg -i "$filename" -crf 30 "$tempname" && mv "$tempname" "$filename"
 	fi
 
 	# pdf
@@ -50,14 +49,14 @@ do
 	then
 		echo "optimizing $filename ..."
 		tempfile=$(mktemp)
-		gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile=$tempfile $filename && mv $tempfile $filename
+		gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/ebook -dNOPAUSE -dQUIET -dBATCH -sOutputFile="$tempfile" "$filename" && mv "$tempfile" "$filename"
 	fi
 
 	# png
 	if [[ $filename =~ .*\.png ]]
 	then
 		echo "optimizing $filename ..."
-		pngquant -f --quality 0-10 $filename --output $filename
+		pngquant -f --quality 0-10 "$filename" --output "$filename"
 	fi
 done
 
