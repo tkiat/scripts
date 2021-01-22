@@ -12,64 +12,49 @@ guix install \
 	acpi \
 	adb \
 	alsa-utils \
+	cmus \
 	cpufrequtils \
 	cryptsetup \
 	curl \
+	feh \
 	file \
 	font-gnu-freefont \
+	ghostscript \
 	git \
 	gnupg \
 	htop \
+	icecat \
+	imagemagick \
+	jpegoptim \
 	lm-sensors \
 	lsof \
+	mc \
 	mediainfo \
 	neofetch \
 	net-tools \
+	ntfs-3g \
 	password-store \
 	pinentry \
+	pngquant \
 	pv \
+	qutebrowser \
+	ranger \
 	recutils \
 	redshift \
+	rsync \
+	scrot \
+	thunar \
+	tree \
+	tumbler \
+	unison \
+	unzip \
+	vim-full \
+	vlc \
 	weechat \
 	wget \
 	xdg-utils \
-	zsh \
-
-# file & browser (tumbler to enable preview in thunar)
-guix install \
-	mc \
-	icecat \
-	ntfs-3g \
-	qutebrowser \
-	ranger \
-	rsync \
-	thunar \
-	tumbler \
-	tree \
-	unison \
-	unzip \
 	zip \
-
-# multimedia
-guix install \
-	cmus \
-	jpegoptim \
-	pngquant \
-	scrot \
-	vlc \
-
-# office
-guix install \
-	feh \
-	ghostscript \
-	vim-full \
-
-# vpn
-guix install \
-	network-manager-openvpn \
-	openresolv \
-	openvpn \
-	protonvpn-cli \
+	zsh \
 
 # xorg
 guix install \
