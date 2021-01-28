@@ -47,7 +47,7 @@ for file in files:
   os.rename(file, re.sub('(\d+)', lambda m: prepend_zero_to_int(int(m.group(0)), int(x)), file_no_ext, 1) + ext)
 ''']
 
-options += ['Number -- Subtract first number by x']
+options += ['Number -- Add first number by x']
 commands += ['''
 x = read_int("Enter x: ")
 for file in files:
@@ -56,7 +56,7 @@ for file in files:
   last_dot_index = file.rfind('.')
   file_no_ext = file if last_dot_index == -1 else file[0:last_dot_index]
   ext = "" if last_dot_index == -1 else file[last_dot_index:]
-  os.rename(file, re.sub('(\-?\d+)', lambda m: str(int(m.group(0)) - int(x)), file_no_ext, 1) + ext)
+  os.rename(file, re.sub('(\-?\d+)', lambda m: str(int(m.group(0)) + int(x)), file_no_ext, 1) + ext)
 ''']
 
 options += ['Text -- Add at specific index']
