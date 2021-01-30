@@ -1,0 +1,61 @@
+#!/usr/bin/env dash
+# coding
+sudo apt install \
+	cloc \
+	make \
+	node \
+	python \
+	shellcheck \
+# general
+sudo apt install \
+	acpi \
+	adb \
+	cmus \
+	cpufrequtils \
+	cryptsetup \
+	curl \
+	feh \
+	ghostscript \
+	git \
+	gnupg \
+	htop \
+	firefox-esr \
+	imagemagick \
+	jpegoptim \
+	lm-sensors \
+	mc \
+	mediainfo \
+	neofetch \
+	net-tools \
+	ntfs-3g \
+	pass \
+	pngquant \
+	pv \
+	qutebrowser \
+	ranger \
+	recutils \
+	redshift \
+	rfkill \
+	rsync \
+	scrot \
+	thunar \
+	tree \
+	tumbler \
+	unison \
+	unzip \
+	vim \
+	vlc \
+	weechat \
+	wget \
+	xdg-utils \
+	zip \
+
+# xorg
+sudo apt install \
+	libx11-dev \
+	libxft-dev \
+	libxinerama-dev \
+	x11-utils \
+	xclip \
+	xpdf \
+	x11-xserver-utils \
