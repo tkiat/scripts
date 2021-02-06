@@ -5,8 +5,9 @@ helper_script=$script_path"/helper"
 declare -a options; declare -a commands
 options+=('git add -A'); commands+=('git add -A')
 options+=('git commit -m <message>'); commands+=('read -p "Enter commit message: " msg; git commit -m "$msg"')
-options+=('git push origin $(git branch --show-current)'); commands+=('git push origin $(git branch --show-current)')
+options+=('git push origin $(git rev-parse --abbrev-ref HEAD)'); commands+=('git push origin $(git rev-parse --abbrev-ref HEAD)')
 options+=('git status'); commands+=('git status')
+options+=('git log --graph --decorate --pretty=oneline --abbrev-commit --all'); commands+=('git log --graph --decorate --pretty=oneline --abbrev-commit --all')
 options+=('git log --date=iso-strict --pretty=format:"%h %ad %s"'); commands+=('git log --date=iso-strict --pretty=format:"%h %ad %s"')
 # options+=('git remote add <alias> <url>'); commands+=('read -p "Hint \"<alias> git@<source>:<username>/<repo>.git\": " repo; git remote add "$repo"')
 #options+=('BitBucket API v2'); commands+=('source $helper_script/helper-menu-bitbucketapi_v2.sh')

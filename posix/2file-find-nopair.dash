@@ -1,3 +1,0 @@
-#!/usr/bin/env dash
-# pair = file with same name but different ext.
-for f in *; do echo "${f%.*}"; done | sort | uniq -u

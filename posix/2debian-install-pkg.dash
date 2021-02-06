@@ -1,11 +1,23 @@
 #!/usr/bin/env dash
 # coding
 sudo apt install \
+	build-essential \
 	cloc \
+	gcc \
 	make \
 	node \
 	python \
 	shellcheck \
+# xorg
+sudo apt install \
+	libx11-dev \
+	libxft-dev \
+	libxinerama-dev \
+	libxrandr-dev \
+	x11-utils \
+	xclip \
+	xpdf \
+	x11-xserver-utils \
 # general
 sudo apt install \
 	acpi \
@@ -26,6 +38,7 @@ sudo apt install \
 	mc \
 	mediainfo \
 	neofetch \
+	newsboat \
 	net-tools \
 	ntfs-3g \
 	pass \
@@ -38,24 +51,17 @@ sudo apt install \
 	rfkill \
 	rsync \
 	scrot \
+	simplescreenrecorder \
 	thunar \
+	tldr \
 	tree \
 	tumbler \
 	unison \
 	unzip \
-	vim \
+	vim-gtk \
 	vlc \
+	w3m \
 	weechat \
 	wget \
 	xdg-utils \
 	zip \
-
-# xorg
-sudo apt install \
-	libx11-dev \
-	libxft-dev \
-	libxinerama-dev \
-	x11-utils \
-	xclip \
-	xpdf \
-	x11-xserver-utils \
