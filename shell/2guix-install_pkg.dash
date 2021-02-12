@@ -1,0 +1,70 @@
+#!/usr/bin/env dash
+# coding
+guix install \
+  bash-completion \
+  cloc \
+  git \
+  guile \
+  node \
+  python \
+  shellcheck \
+
+# general (net-tools for ifconfig)
+guix install \
+  acpi \
+  adb \
+  alsa-utils \
+  blender \
+  cmus \
+  cpufrequtils \
+  cryptsetup \
+  curl \
+  feh \
+  file \
+  font-gnu-freefont \
+  ghostscript \
+  gnupg \
+  htop \
+  icecat \
+  imagemagick \
+  inkscape \
+  jpegoptim \
+  kdenlive \
+  lm-sensors \
+  lsof \
+  mc \
+  mediainfo \
+  neofetch \
+  net-tools \
+  ntfs-3g \
+  password-store \
+  pinentry \
+  pngquant \
+  pv \
+  qutebrowser \
+  ranger \
+  recutils \
+  redshift \
+  rsync \
+  scrot \
+  thunar \
+  tree \
+  tumbler \
+  unison \
+  unzip \
+  vim-full \
+  vlc \
+  weechat \
+  wget \
+  xdg-utils \
+  zip \
+  zsh \
+
+# xorg
+guix install \
+  setxkbmap \
+  xclip \
+  xpdf \
+  xprop \
+  xrandr \
+  xsetroot \
