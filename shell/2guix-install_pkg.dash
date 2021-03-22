@@ -12,6 +12,10 @@ guix install \
   recutils \
   shellcheck \
 
+# non-coding dev-related
+guix install \
+  openssh
+
 # general (net-tools for ifconfig)
 guix install \
   acpi \
