@@ -1,12 +1,15 @@
 #!/usr/bin/env dash
 # coding
 guix install \
+  ansible \
   bash-completion \
   cloc \
+  gcc \
   git \
   guile \
   node \
   python \
+  recutils \
   shellcheck \
 
 # general (net-tools for ifconfig)
@@ -24,6 +27,7 @@ guix install \
   font-gnu-freefont \
   ghostscript \
   gnupg \
+  guvcview \
   htop \
   icecat \
   imagemagick \
@@ -43,7 +47,6 @@ guix install \
   pv \
   qutebrowser \
   ranger \
-  recutils \
   redshift \
   rsync \
   scrot \
