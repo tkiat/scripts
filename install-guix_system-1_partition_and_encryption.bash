@@ -1,18 +1,18 @@
 #!/run/current-system/profile/bin/bash
-#modprobe dm_mod # load device mapper module in current kernel
-#lsblk
+modprobe dm_mod # load device mapper module in current kernel
+lsblk
 echo "Partitioning /dev/sdx, enter x"
 read x
-#echo "make it gpt"
+echo "make it gpt"
 
-#parted --align optimal /dev/sd${x} <<EOF
-#mklabel GPT
-#Yes
-#q
-#mkpart primary 0% 100%
-#EOF
+parted --align optimal /dev/sd${x} <<EOF
+mklabel GPT
+Yes
+q
+mkpart primary 0% 100%
+EOF
 
-#cryptsetup -v --cipher serpent-xts-plain64 --key-size 512 --hash whirlpool --iter-time 500 --use-random --verify-passphrase luksFormat /dev/sd${x}1
+cryptsetup -v --cipher serpent-xts-plain64 --key-size 512 --hash whirlpool --iter-time 500 --use-random --verify-passphrase luksFormat /dev/sd${x}1
 luksUUID=$(cryptsetup luksUUID /dev/sd${x}1)
 cryptsetup luksOpen /dev/sd${x}1 temp
 mkfs.btrfs -L guix /dev/mapper/temp

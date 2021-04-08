@@ -12,10 +12,6 @@ guix install \
   recutils \
   shellcheck \
 
-# non-coding dev-related
-guix install \
-  openssh
-
 # general (net-tools for ifconfig)
 guix install \
   acpi \
@@ -42,9 +38,13 @@ guix install \
   lsof \
   mc \
   mediainfo \
+  mupdf \
   neofetch \
   net-tools \
+  newsboat \
   ntfs-3g \
+  openssh \
+  openssl \
   password-store \
   pinentry \
   pngquant \
@@ -54,13 +54,17 @@ guix install \
   redshift \
   rsync \
   scrot \
+  simplescreenrecorder \
+  telegram-desktop \
   thunar \
   tree \
   tumbler \
+  ungoogled-chromium \
   unison \
   unzip \
   vim-full \
   vlc \
+  w3m \
   weechat \
   wget \
   xdg-utils \

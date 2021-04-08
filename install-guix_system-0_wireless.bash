@@ -1,6 +1,5 @@
 #!/run/current-system/profile/bin/bash
-# loadkeys en # set keyboard layout
-
+loadkeys en # set keyboard layout
 # wireless
 rfkill unblock all
 dev=$(iw dev | awk '$1=="Interface"{print $2}')
