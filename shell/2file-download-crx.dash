@@ -1,6 +1,10 @@
 #!/usr/bin/env dash
 default=89.0.4389.90
-read -p "Enter chromium version (from 'chrome://settings/help', $default if left blank): " version
-[ -z "$version" ] && version=$default
-read -p "Enter your extension id (browse the extension on Chrome Webstore and extract from url: 'https://chrome.google.com/webstore/detail/.../[EXTENSION_ID]'): " extension_id
-wget "https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=$version&x=id%3D$extension_id%26installsource%3Dondemand%26uc" -O extension.crx
+
+echo "Default Chromium version is $default."
+read -p "Left blank for this version or update to a new version: " VERSION
+[ -z "$VERSION" ] && VERSION=$default || sed -i "s/^default=.*/default=$VERSION/" $0
+
+read -p "Enter your EXTENSION_ID (browse the extension on Chrome Webstore and extract from url: 'https://chrome.google.com/webstore/detail/.../[EXTENSION_ID]'): " EXTENSION_ID
+
+wget "https://clients2.google.com/service/update2/crx?response=redirect&acceptformat=crx2,crx3&prodversion=$VERSION&x=id%3D$EXTENSION_ID%26installsource%3Dondemand%26uc" -O extension.crx
