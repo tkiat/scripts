@@ -1,0 +1,24 @@
+#!/usr/bin/env dash
+DEFAULT_USERNAME=tkiat
+DEFAULT_SERVER=gitlab
+
+SERVER=$DEFAULT_SERVER
+echo "Server name is GitLab"
+# read -p "Server name? (default = GitHub or type L for Git[L]ab): " CHOICE
+# [ ! "$CHOICE" = "L" ] && echo "You chose GitHub"
+# [ "$CHOICE" = "L" ] && echo "You chose GitLab" && SERVER=gitlab
+
+echo "Default username is $DEFAULT_USERNAME"
+read -p "Left blank for this value or type something to update it: " USERNAME
+[ -z "$USERNAME" ] && USERNAME=$DEFAULT_USERNAME || sed -i "s/^DEFAULT_USERNAME=.*/DEFAULT_USERNAME=$USERNAME/" $0
+
+read -p "Repo name please?: " REPONAME
+mkdir $REPONAME
+cd $REPONAME
+git init
+git remote add origin git@$SERVER.com:$USERNAME/$REPONAME.git
+echo "# $REPONAME" > README.md
+git add README.md
+git commit -m 'Initilize the project'
+git push origin main
+cd -
