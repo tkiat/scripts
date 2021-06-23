@@ -1,5 +1,20 @@
 #!/usr/bin/env dash
 
+# debian pkgs
+sudo apt install \
+  network-manager \
+  rfkill \
+  sudo \
+  vrms \
+  xorg
+
+# compile myself
+# dmenu
+# dwm
+# slock
+# st
+
+# nix pkgs
 nix-env install \
 acpi /
 cloc /
