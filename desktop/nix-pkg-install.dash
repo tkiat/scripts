@@ -1,0 +1,41 @@
+#!/usr/bin/env dash
+
+nix-env install \
+acpi /
+cloc /
+cmus /
+curl /
+dmidecode /
+docker /
+docker-compose /
+elm /
+feh /
+firefox-devedition-bin /
+firefox-esr-unwrapped /
+flashrom /
+ghostscript /
+gimp /
+git /
+gwenview /
+htop /
+imagemagick /
+inkscape /
+kdenlive /
+less /
+libreoffice /
+lm-sensors /
+mc /
+mupdf /
+neofetch-unstable /
+neomutt /
+newsboat /
+nix /
+purescript /
+qview /
+ranger /
+spago /
+tldr /
+tor-browser-bundle-bin /
+vim_configurable /
+vscodium /
+yarn
