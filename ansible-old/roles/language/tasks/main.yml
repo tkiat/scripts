@@ -1,5 +1,0 @@
----
-- include_tasks: ruby.yml
-- include_tasks: golang.yml
-
-- include_tasks: asciidoctor.yml # dependent on ruby

@@ -1,4 +1,0 @@
----
-#- include_tasks: browser-firefox.yml
-#- include_tasks: browser-chromium.yml
-- include_tasks: browser-surf.yml

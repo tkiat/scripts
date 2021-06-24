@@ -1,5 +1,0 @@
-- name: zsh -> install
-  become: true
-  package:
-    name: zsh
-    state: latest

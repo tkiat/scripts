@@ -1,7 +1,0 @@
-- name: Set timezone (void linux)
-  become: true
-  lineinfile:
-    path: /etc/rc.conf
-    regexp: '^TIMEZONE='
-    line: 'TIMEZONE=Asia/Bangkok'
-  when: ansible_os_family == "void"

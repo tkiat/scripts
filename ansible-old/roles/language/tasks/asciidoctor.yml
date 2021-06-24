@@ -1,4 +1,0 @@
-- name: asciidoctor -> install via RubyGems
-  gem:
-    name: asciidoctor
-    state: latest

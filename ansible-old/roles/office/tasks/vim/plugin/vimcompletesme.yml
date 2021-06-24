@@ -1,7 +1,0 @@
-- name: VimCompletesMe -> git clone
-  include_role:
-    name: shared
-    tasks_from: git-clone
-  with_items:
-    - { dest_dir: "{{ ansible_env.HOME }}/.vim/pack/vendor/start/VimCompletesMe",
-        http: "git://github.com/ajh17/VimCompletesMe.git"}
