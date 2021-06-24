@@ -1,12 +1,32 @@
 #!/usr/bin/env dash
 
-# debian pkgs
+# debian pkgs: essential
 sudo apt install \
+  gcc \
+  make \
   network-manager \
   rfkill \
   sudo \
-  vrms \
   xorg
+
+# debian pkgs: xorg
+sudo apt install \
+	libx11-dev \
+	libxft-dev \
+	libxinerama-dev \
+	libxrandr-dev \
+	x11-utils \
+	xclip \
+	x11-xserver-utils \
+
+# debian pkgs
+sudo apt install \
+  neofetch \
+  vrms
+
+# external binaries
+# ungoogled chromium
+# freefilesync
 
 # compile myself
 # dmenu
@@ -15,42 +35,42 @@ sudo apt install \
 # st
 
 # nix pkgs
-nix-env install \
-acpi /
-cloc /
-cmus /
-curl /
-dmidecode /
-docker /
-docker-compose /
-elm /
-feh /
-firefox-devedition-bin /
-firefox-esr-unwrapped /
-flashrom /
-ghostscript /
-gimp /
-git /
-gwenview /
-htop /
-imagemagick /
-inkscape /
-kdenlive /
-less /
-libreoffice /
-lm-sensors /
-mc /
-mupdf /
-neofetch-unstable /
-neomutt /
-newsboat /
-nix /
-purescript /
-qview /
-ranger /
-spago /
-tldr /
-tor-browser-bundle-bin /
-vim_configurable /
-vscodium /
-yarn
+nix-env -i \
+acpi \
+cloc \
+cmus \
+curl \
+dmidecode \
+docker \
+docker-compose \
+feh \
+firefox-devedition-bin \
+firefox-esr-unwrapped \
+flashrom \
+ghostscript \
+gimp \
+git \
+gwenview \
+htop \
+imagemagick \
+inkscape \
+kdenlive \
+less \
+libreoffice \
+lm-sensors \
+mc \
+mupdf \
+neomutt \
+newsboat \
+nodejs \
+purescript \
+qview \
+ranger \
+spago \
+thunar \
+tldr \
+tor-browser-bundle-bin \
+vim_configurable \
+vscodium \
+yarn \
+zenity
