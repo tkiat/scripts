@@ -17,10 +17,10 @@ sudo apt install \
 	libxinerama-dev \
 	libxrandr-dev \
 	x11-utils \
-	xclip \
 	x11-xserver-utils \
+	xclip
 
-# debian pkgs
+# debian pkgs: others
 sudo apt install \
   neofetch \
   vrms
@@ -38,6 +38,7 @@ sudo apt install \
 # nix pkgs
 nix-env -i \
 acpi \
+alsa-utils \
 cloc \
 cmus \
 curl \
