@@ -1,7 +1,8 @@
 #!/usr/bin/env dash
 
-# debian pkgs: essential
+# debian pkgs: basic
 sudo apt install \
+  fonts-thai-tlwg-ttf \
   gcc \
   gpg \
   make \
