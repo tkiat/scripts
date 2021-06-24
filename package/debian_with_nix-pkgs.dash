@@ -29,6 +29,7 @@ sudo apt install \
 # external binaries
 # ungoogled chromium
 # freefilesync
+# nvm & nvm install --lts
 
 # compile myself
 # dmenu
@@ -40,6 +41,7 @@ sudo apt install \
 nix-env -i \
 acpi \
 alsa-utils \
+ansible \
 cloc \
 cmus \
 cpufrequtils \
@@ -54,7 +56,6 @@ flashrom \
 ghostscript \
 gimp \
 git \
-gnupg \
 gwenview \
 htop \
 imagemagick \
@@ -69,7 +70,6 @@ mediainfo \
 mupdf \
 neomutt \
 newsboat \
-nodejs \
 password-store \
 purescript \
 qview \

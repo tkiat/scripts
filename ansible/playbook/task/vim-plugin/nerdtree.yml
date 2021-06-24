@@ -1,0 +1,4 @@
+- name: NERDTree -> git clone
+  ansible.builtin.git:
+    repo: 'https://github.com/preservim/nerdtree.git'
+    dest: "{{ base_dir }}/nerdtree"
