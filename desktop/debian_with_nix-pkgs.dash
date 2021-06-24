@@ -3,6 +3,7 @@
 # debian pkgs: essential
 sudo apt install \
   gcc \
+  gpg \
   make \
   network-manager \
   rfkill \
@@ -67,6 +68,7 @@ password-store \
 purescript \
 qview \
 ranger \
+redshift \
 spago \
 thunar \
 tldr \
