@@ -41,6 +41,7 @@ acpi \
 alsa-utils \
 cloc \
 cmus \
+cpufrequtils \
 curl \
 dmidecode \
 docker \
@@ -52,15 +53,18 @@ flashrom \
 ghostscript \
 gimp \
 git \
+gnupg \
 gwenview \
 htop \
 imagemagick \
 inkscape \
+jpegoptim \
 kdenlive \
 less \
 libreoffice \
 lm-sensors \
 mc \
+mediainfo \
 mupdf \
 neomutt \
 newsboat \
@@ -70,11 +74,22 @@ purescript \
 qview \
 ranger \
 redshift \
+scrot \
+shellcheck \
+simplescreenrecorder \
 spago \
 thunar \
 tldr \
 tor-browser-bundle-bin \
+tree \
+tumbler \
+unzip \
 vim_configurable \
+vlc \
 vscodium \
+w3m \
+weechat \
+wget \
 yarn \
-zenity
+zenity \
+zip
