@@ -1,7 +1,7 @@
 - name: coc.nvim -> git clone
   ansible.builtin.git:
     repo: 'https://github.com/neoclide/coc.nvim.git'
-    dest: "{{ base_dir }}/coc.nvim"
+    dest: '{{ base_dir }}/coc.nvim'
 
 - name: coc.nvim -> create ~/.config/coc/extensions/ if not exist
   file:
@@ -21,12 +21,12 @@
 
 - name: coc.nvim -> install extensions
   npm:
-    name: "{{ item }}"
+    name: '{{ item }}'
     path: ~/.config/coc/extensions
   with_items:
     - coc-css
     - coc-html
-    - coc-json
+      # - coc-json
     - coc-markdownlint
     - coc-prettier
     - coc-python
