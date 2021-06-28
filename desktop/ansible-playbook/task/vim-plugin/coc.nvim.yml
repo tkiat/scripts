@@ -18,19 +18,19 @@
     dest: ~/.config/coc/extensions/package.json
     content: '{"dependencies":{}}'
   when: package_json.stat.exists == false
-
-- name: coc.nvim -> install extensions
-  npm:
-    name: '{{ item }}'
-    path: ~/.config/coc/extensions
-  with_items:
-    - coc-css
-    - coc-html
-      # - coc-json
-    - coc-markdownlint
-    - coc-prettier
-    - coc-python
-    - coc-sh
-    - coc-tsserver
-    - coc-xml
-    - coc-yaml
+#
+# - name: coc.nvim -> install extensions
+#   npm:
+#     name: '{{ item }}'
+#     path: ~/.config/coc/extensions
+#   with_items:
+#     - coc-css
+#     - coc-html
+#     - coc-json
+#     - coc-markdownlint
+#     - coc-prettier
+#     - coc-python
+#     - coc-sh
+#     - coc-tsserver
+#     - coc-xml
+#     - coc-yaml
