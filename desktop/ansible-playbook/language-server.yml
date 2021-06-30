@@ -1,11 +1,11 @@
 - hosts: localhost
   name: language-server
   tasks:
-  - name: bash-language-server -> install globally
-    npm:
-      name: bash-language-server
-      global: yes
-  - name: purescript-language-server -> install globally
-    npm:
-      name: purescript-language-server
-      global: yes
+    - name: bash-language-server -> install globally
+      npm:
+        name: bash-language-server
+        global: yes
+    - name: purescript-language-server -> install globally
+      npm:
+        name: purescript-language-server
+        global: yes
