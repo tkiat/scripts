@@ -7,6 +7,7 @@ sudo apt install \
   gpg \
   make \
   network-manager \
+  psmisc \
   rfkill \
   sudo \
   xorg
@@ -72,12 +73,15 @@ nix-env -i \
   neomutt \
   newsboat \
   password-store \
+  pencil \
+  purescript \
   qview \
   ranger \
   redshift \
   scrot \
   shellcheck \
   simplescreenrecorder \
+  spago \
   telegram-desktop \
   thunar \
   tldr \
