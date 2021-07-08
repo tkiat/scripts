@@ -29,6 +29,7 @@
 #     - coc-json
 #     - coc-markdownlint
 #     - coc-prettier
+#     - coc-purty
 #     - coc-python
 #     - coc-sh
 #     - coc-tsserver
