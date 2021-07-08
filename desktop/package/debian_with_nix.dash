@@ -18,6 +18,7 @@ sudo apt install \
 	libxft-dev \
 	libxinerama-dev \
 	libxrandr-dev \
+  python-pip \
 	x11-utils \
 	x11-xserver-utils \
 	xclip
