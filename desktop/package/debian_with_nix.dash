@@ -10,6 +10,7 @@ sudo apt install \
   psmisc \
   rfkill \
   sudo \
+  thunar \
   xorg
 
 # debian pkgs: xorg
@@ -84,7 +85,6 @@ nix-env -i \
   simplescreenrecorder \
   spago \
   telegram-desktop \
-  thunar \
   tldr \
   tor-browser-bundle-bin \
   tree \
