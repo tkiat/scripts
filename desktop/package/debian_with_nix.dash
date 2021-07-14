@@ -53,6 +53,9 @@ nix-env -i \
   dmidecode \
   docker \
   docker-compose \
+  du-dust \
+  exa \
+  fd \
   feh \
   firefox-esr-unwrapped \
   flashrom \
@@ -84,8 +87,8 @@ nix-env -i \
   shellcheck \
   simplescreenrecorder \
   spago \
+  tealdeer \
   telegram-desktop \
-  tldr \
   tor-browser-bundle-bin \
   tree \
   tumbler \
