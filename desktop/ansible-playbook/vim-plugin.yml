@@ -8,3 +8,4 @@
     - import_tasks: task/vim-plugin/emmet-vim.yml
     - import_tasks: task/vim-plugin/nerdtree.yml
     - import_tasks: task/vim-plugin/purescript-vim.yml
+    - import_tasks: task/vim-plugin/vim-toml.yml
