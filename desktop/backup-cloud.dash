@@ -1,0 +1,18 @@
+#!/usr/bin/env dash
+if ! type gdrive > /dev/null; then
+  echo "gdrive not found in \$PATH. Exiting..."
+  exit 1
+fi
+
+if ! [ -d ~/Cloud ]; then
+  echo "The folder ~/Cloud not found. Exiting..."
+  exit 1
+fi
+
+cd ~
+filename="$(date '+%Y_%m_%d')-Cloud.tar.gz"
+tar czf $filename --directory=Cloud .
+gpg --encrypt --recipient tkiat@tutanota.com $filename
+rm $filename
+gdrive upload "$filename.gpg"
+rm "$filename.gpg"
