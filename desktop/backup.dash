@@ -5,4 +5,4 @@ bookmark_filename="bookmark-Chromium-$(date +'%Y_%m_%d')"
 cd ~/Git/private
 rm -f bookmark-Chromium-*
 cp ~/.config/chromium/Default/Bookmarks $bookmark_filename
-git add -A && git commit -m "Update to $bookmark_filename" && git push origin $(git rev-parse --abbrev-ref HEAD)
+git add $bookmark_filename && git commit -m "Update to $bookmark_filename" && git push origin $(git rev-parse --abbrev-ref HEAD)
