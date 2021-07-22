@@ -9,6 +9,9 @@ if ! [ -d ~/Cloud ]; then
   exit 1
 fi
 
+# remove old backups
+# gdrive list -q "name contains '-Cloud.tar.gz.gpg'"
+
 cd ~
 filename="$(date '+%Y_%m_%d')-Cloud.tar.gz"
 tar czf $filename --directory=Cloud .
