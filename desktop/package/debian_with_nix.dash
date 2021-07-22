@@ -2,16 +2,27 @@
 
 # debian pkgs: basic
 sudo apt install \
+  adb \
+  apt-file \
+  flashrom \
   fonts-thai-tlwg-ttf \
   gcc \
+  ghc \
   gpg \
+  libxss-dev \
   make \
   network-manager \
   psmisc \
+  python-pip \
   rfkill \
+  haskell-stack \
   sudo \
   thunar \
   xorg
+
+# libraries
+sudo apt install \
+  libghc-xmonad-dev
 
 # debian pkgs: xorg
 sudo apt install \
@@ -19,7 +30,6 @@ sudo apt install \
 	libxft-dev \
 	libxinerama-dev \
 	libxrandr-dev \
-  python-pip \
 	x11-utils \
 	x11-xserver-utils \
 	xclip
@@ -59,12 +69,11 @@ nix-env -i \
   fd \
   feh \
   firefox-esr-unwrapped \
-  flashrom \
   ghostscript \
-  ghc \
   gimp \
   git \
   gwenview \
+  haskell-language-server \
   htop \
   imagemagick \
   inkscape \
