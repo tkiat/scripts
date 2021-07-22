@@ -1,5 +1,5 @@
 #!/usr/bin/env dash
-bookmark_filename="bookmark-Chromium-$(date +'%Y_%m_%d')"
+bookmark_filename="bookmark-Chromium-$(date +'%Y_%m_%d').json"
 cd ~/Git/private
 rm -f bookmark-Chromium-*
 cp ~/.config/chromium/Default/Bookmarks $bookmark_filename
